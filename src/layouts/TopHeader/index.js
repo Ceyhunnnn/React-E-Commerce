@@ -6,9 +6,7 @@ function TopHeader() {
   return (
     <div className="header">
       {t("topHeader.summer")}
-      <b>
-        <u>{t("shopNow")}</u>
-      </b>
+      <p className="shop-title">{t("topHeader.shopNow")}</p>
     </div>
   );
 }

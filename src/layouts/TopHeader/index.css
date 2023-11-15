@@ -8,3 +8,9 @@
     font-size: 14px;
     gap: 10px;
 }
+
+.shop-title {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}

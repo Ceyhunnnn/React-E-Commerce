@@ -9,7 +9,7 @@ const Config = {
     name: "E-Commerce",
   },
   lang: {
-    default: "tr",
+    default: "en",
   },
 };
 export default Config;

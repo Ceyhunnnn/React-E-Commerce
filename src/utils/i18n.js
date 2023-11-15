@@ -15,7 +15,7 @@ const resources = {
 const i18nInit = {
   resources,
   lng: localStorage.getItem("i18nextLng") || Config.lang.default,
-  fallbackLng: "tr",
+  fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },
