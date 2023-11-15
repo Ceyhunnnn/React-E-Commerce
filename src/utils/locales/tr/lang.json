@@ -2,5 +2,12 @@
     "topHeader":{
         "summer":"Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
         "shopNow":"Shop Now"
-    }
+    },
+    "header":{
+        "home":"Home",
+        "about":"About",
+        "contact":"Contact",
+        "signup":"Sign Up"
+    },
+    "exclusive":"Exclusive"
 }

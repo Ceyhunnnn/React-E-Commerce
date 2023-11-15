@@ -1,6 +1,7 @@
 const { lazy } = require("react");
 
 const MainLayout = lazy(() => import("./layouts/MainLayout"));
+const Home = lazy(() => import("./pages/home"));
 
 const routes = [
   {
@@ -9,7 +10,7 @@ const routes = [
     children: [
       {
         index: true,
-        element: <p>deneme</p>,
+        element: <Home />,
       },
     ],
   },
