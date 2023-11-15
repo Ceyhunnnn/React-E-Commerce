@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import { useTranslation } from "react-i18next";
+import Container from "components/Container";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
@@ -22,13 +23,13 @@ function Header() {
     },
   ];
   return (
-    <>
+    <Container>
       <div className="header-area">
         <h1>{t("exclusive")}</h1>
         <span>liste alani</span>
         <span>search - sepet</span>
       </div>
-    </>
+    </Container>
   );
 }
 
