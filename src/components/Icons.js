@@ -58,3 +58,58 @@ export const ShoppingVehicle = ({ width, height }) => {
     </svg>
   );
 };
+export const ArrowLeft = ({ width, height, className }) => {
+  return (
+    <svg
+      className={className}
+      width={width || Config.components.icon.width}
+      height={height || Config.components.icon.height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11 5L4 12L11 19M4 12H20"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const ArrowRight = ({ width, height, className }) => {
+  return (
+    <svg
+      className={className}
+      width={width || Config.components.icon.width}
+      height={height || Config.components.icon.height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.5 12H20M20 12L13 5M20 12L13 19"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+export const TwoDot = () => {
+  return (
+    <svg
+      width="4"
+      height="16"
+      viewBox="0 0 4 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="2" cy="2" r="2" fill="#E07575" />
+      <circle cx="2" cy="14" r="2" fill="#E07575" />
+    </svg>
+  );
+};

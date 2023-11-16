@@ -55,7 +55,9 @@ function Header() {
           </div>
         </header>
       </Container>
-      <hr></hr>
+      <hr
+        style={{ margin: "10px 0px 0px 0px", borderTop: "1px solid #ccc" }}
+      ></hr>
     </>
   );
 }

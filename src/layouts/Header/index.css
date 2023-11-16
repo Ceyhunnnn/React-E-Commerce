@@ -1,14 +1,13 @@
 .header-area {
-    height: 90px;
+    height: 70px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10px 10px 10px;
     width: 100%;
 }
 

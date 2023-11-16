@@ -9,5 +9,17 @@
         "contact":"Contact",
         "signup":"Sign Up"
     },
-    "exclusive":"Exclusive"
+    "exclusive":"Exclusive",
+    "mainMenuCategories":{
+        "fashion":"Woman’s Fashion",
+        "menFashion":"Men’s Fashion",
+        "electronics":"Electronics",
+        "home":"Home & Lifestyle",
+        "medicine":"Medicine",
+        "sport":"Sports & Outdoor",
+        "baby":"Baby’s & Toys",
+        "pets":"Groceries & Pets",  
+        "healthy":"Health & Beauty"
+    },
+    "sales":"Flash Sales"
 }
