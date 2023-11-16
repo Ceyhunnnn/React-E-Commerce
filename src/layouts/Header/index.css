@@ -1,6 +1,48 @@
 .header-area {
     height: 90px;
     display: flex;
+    align-items: end;
+}
+
+.header-content {
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 10px 10px 10px;
+    width: 100%;
+}
+
+.header-title {
+    font-size: 24px;
+}
+
+.menu-area {
+    display: flex;
+    gap: 25px;
+}
+
+ul {
+    list-style: none;
+    cursor: pointer;
+}
+
+.right-area {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    background-color: #F5F5F5;
+    width: 170px;
+}
+
+
+
+.search-input::placeholder {
+    opacity: 0.5;
+    color: #000000;
 }
