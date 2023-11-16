@@ -47,6 +47,10 @@ function Header() {
               />
               <Heart width={22} height={22} />
               <ShoppingVehicle width={25} height={25} />
+              <select name="languages" className="language-select">
+                <option>English</option>
+                <option>Turkish</option>
+              </select>
             </div>
           </div>
         </header>
