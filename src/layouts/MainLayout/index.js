@@ -1,3 +1,4 @@
+import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import TopHeader from "layouts/TopHeader";
 import React from "react";
@@ -9,6 +10,7 @@ function MainLayout() {
       <TopHeader />
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 }
