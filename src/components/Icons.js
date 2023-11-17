@@ -58,9 +58,10 @@ export const ShoppingVehicle = ({ width, height }) => {
     </svg>
   );
 };
-export const ArrowLeft = ({ width, height, className }) => {
+export const ArrowLeft = ({ width, height, className, onClick }) => {
   return (
     <svg
+      onClick={onClick}
       className={className}
       width={width || Config.components.icon.width}
       height={height || Config.components.icon.height}
@@ -79,9 +80,10 @@ export const ArrowLeft = ({ width, height, className }) => {
   );
 };
 
-export const ArrowRight = ({ width, height, className }) => {
+export const ArrowRight = ({ width, height, className, onClick }) => {
   return (
     <svg
+      onClick={onClick}
       className={className}
       width={width || Config.components.icon.width}
       height={height || Config.components.icon.height}

@@ -21,5 +21,11 @@
         "pets":"Groceries & Pets",  
         "healthy":"Health & Beauty"
     },
-    "sales":"Flash Sales"
+    "sales":"Flash Sales",
+    "viewAllProducts":"View All Products",
+    "categories":"Browse By Category",
+    "categoriesTitle":"Categories",
+    "arrival":"New Arrial",
+    "featured":"Featured",
+    "todays":"Today’s"
 }

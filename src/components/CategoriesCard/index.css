@@ -1,0 +1,12 @@
+.cat-card {
+    width: 170px;
+    height: 145px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+}

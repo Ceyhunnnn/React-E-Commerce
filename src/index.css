@@ -91,3 +91,16 @@ video {
 *:focus {
   outline: none;
 }
+
+.display-flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.loading-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

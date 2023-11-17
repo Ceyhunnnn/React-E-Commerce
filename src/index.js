@@ -5,10 +5,11 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 import "utils/i18n";
+import Loading from "components/Loading";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <Suspense fallback={"Loading..."}>
+    <Suspense fallback={<Loading />}>
       <App />
     </Suspense>
   </BrowserRouter>
