@@ -3,7 +3,7 @@ import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
 function Login() {
-  const form = useForm();
+  const loginForm = useForm();
   const formItems = [
     {
       id: 0,
@@ -26,7 +26,7 @@ function Login() {
       <p className="font-14">Enter your details below</p>
       <Form
         style={{ marginTop: "25px" }}
-        form={form}
+        form={loginForm}
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
         name="registerForm"

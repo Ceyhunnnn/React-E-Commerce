@@ -133,14 +133,14 @@ function Home() {
       <hr style={{ margin: "50px 0px" }}></hr>
       <GeneralTitle title={t("featured")} />
       <h1 className="sales-title">{t("arrival")}</h1>
-      <div class="arrival">
-        <div class="content1">
+      <div className="arrival">
+        <div className="content1">
           <img src="/images/ps5.svg" className="content-image" alt="Ps5Photo" />
           <p className="content-title">Play Station 5</p>
           <p>Black and White version of the PS5 coming out on sale.</p>
           <u>Shop Now</u>
         </div>
-        <div class="content2">
+        <div className="content2">
           <img
             src="/images/woman.svg"
             className="content-image"
@@ -150,7 +150,7 @@ function Home() {
           <p>Featured woman collections that give you another vibe.</p>
           <u>Shop Now</u>
         </div>
-        <div class="content3">
+        <div className="content3">
           <img
             src="/images/speakers.svg"
             className="content-image-middle"
@@ -160,7 +160,7 @@ function Home() {
           <p>Amazon wireless speakers</p>
           <u>Shop Now</u>
         </div>
-        <div class="content4">
+        <div className="content4">
           <img
             src="/images/parfume.svg"
             className="content-image-middle"
