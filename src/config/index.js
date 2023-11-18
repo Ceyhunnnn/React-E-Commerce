@@ -7,6 +7,7 @@ const Config = {
   },
   app: {
     name: "E-Commerce",
+    title: "Exclusive",
   },
   lang: {
     default: "en",
