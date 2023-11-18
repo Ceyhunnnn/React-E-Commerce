@@ -3,6 +3,7 @@ import "./index.css";
 import { useTranslation } from "react-i18next";
 import Container from "components/Container";
 import { Heart, ShoppingVehicle } from "components/Icons";
+import { NavLink } from "react-router-dom";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
@@ -36,7 +37,16 @@ function Header() {
             <div className="menu-area">
               {headerMenu.map((header) => (
                 <ul key={header.id}>
-                  <li>{header.title}</li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "is-active" : "is-not-active"
+                      }
+                      to={header.link}
+                    >
+                      {header.title}
+                    </NavLink>
+                  </li>
                 </ul>
               ))}
             </div>
