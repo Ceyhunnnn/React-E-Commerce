@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./index.css";
+import "./HomePage.css";
 import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import GeneralTitle from "components/GeneralTitle";
 import CountdownTimer from "utils/CountdownTimer";
-import { ArrowLeft, ArrowRight } from "components/Icons";
+import { ArrowLeft, ArrowRight } from "components/Icons/Icons";
 import ShoppingCard from "components/ShoppingCard";
 import { Carousel } from "antd";
 import Button from "components/Button";

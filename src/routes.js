@@ -1,10 +1,10 @@
 const { lazy } = require("react");
 
 const MainLayout = lazy(() => import("./layouts/MainLayout"));
-const Home = lazy(() => import("./pages/home"));
-const SignUp = lazy(() => import("./pages/signup"));
-const About = lazy(() => import("./pages/about"));
-const Contact = lazy(() => import("./pages/contact"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
 
 const routes = [
   {
@@ -13,19 +13,19 @@ const routes = [
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: "/about",
-        element: <About />,
+        element: <AboutPage />,
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: <ContactPage />,
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <SignupPage />,
       },
     ],
   },

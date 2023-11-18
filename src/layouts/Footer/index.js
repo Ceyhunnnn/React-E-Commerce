@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import Container from "components/Container";
-import { Facebook, Send, Instagram, Linkedln } from "components/Icons";
+import { Facebook, Send, Instagram, Linkedln } from "components/Icons/Icons";
 function Footer() {
   return (
     <footer className="footer-area">

@@ -4,7 +4,22 @@ import Button from "components/Button";
 import useForm from "hooks/useForm";
 function Login() {
   const form = useForm();
-
+  const formItems = [
+    {
+      id: 0,
+      name: "email",
+      label: "Email Address",
+      placeholder: "Email Address",
+      type: "text",
+    },
+    {
+      id: 1,
+      name: "password",
+      label: "Password",
+      placeholder: "Password",
+      type: "password",
+    },
+  ];
   return (
     <>
       <h1 className="font-36">Log in to Exclusive</h1>
@@ -17,28 +32,20 @@ function Login() {
         name="registerForm"
         layout="vertical"
       >
-        <Form.Item
-          name="email"
-          label="Email Address"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Email Address" />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input type="password" placeholder="Password" />
-        </Form.Item>
+        {formItems.map((input) => (
+          <Form.Item
+            key={input.id}
+            name={input.name}
+            label={input.label}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input placeholder={input.placeholder} type={input.type} />
+          </Form.Item>
+        ))}
       </Form>
       <div className="flex-area">
         <Button title="Login" width={200} height={45} />

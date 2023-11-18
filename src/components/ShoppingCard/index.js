@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { Heart } from "components/Icons";
+import { Heart } from "components/Icons/Icons";
 import { Rate } from "antd";
 
 function ShoppingCard() {

@@ -1,21 +1,21 @@
 import React from "react";
-import "./index.css";
+import "./SignupPage.css";
 import Container from "components/Container";
-import Register from "./Register";
+import RegisterTabbar from "./RegisterTabbar";
 import { Tabs } from "antd";
-import Login from "./Login";
+import LoginTabbar from "./LoginTabbar";
 
 function SignUp() {
   const tabItems = [
     {
       key: "1",
       label: "Login",
-      children: <Login />,
+      children: <LoginTabbar />,
     },
     {
       key: "2",
       label: "Register",
-      children: <Register />,
+      children: <RegisterTabbar />,
     },
   ];
   return (
