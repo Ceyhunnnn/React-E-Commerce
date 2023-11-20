@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import "./HomePage.css";
 import Container from "components/Container";
 import { useTranslation } from "react-i18next";
@@ -9,9 +9,10 @@ import ShoppingCard from "components/ShoppingCard";
 import { Carousel } from "antd";
 import Button from "components/Button";
 import CategoriesCard from "components/CategoriesCard";
+import { useScreenSize } from "hooks/useScreenSize";
 
 function Home() {
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [size] = useScreenSize();
   const carouselRef = useRef();
   const { t } = useTranslation();
   const categories = [
@@ -56,24 +57,15 @@ function Home() {
   const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
   function carouselViewPage() {
-    if (screenSize < 576) {
+    if (size < 576) {
       return 1;
     }
-    if (screenSize > 576 && screenSize < 992) {
+    if (size > 576 && size < 992) {
       return 3;
     }
     return 4;
   }
-  const handleResize = () => {
-    setScreenSize(window.innerWidth);
-  };
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    carouselViewPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <Container>
       <div className="page-content">
