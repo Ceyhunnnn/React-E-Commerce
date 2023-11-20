@@ -51,5 +51,9 @@
             "register":"Create Account",
             "sendMessage":"Send Message"
         }
+    },
+    "languages":{
+        "en":"English",
+        "tr":"Turkish"
     }
 }

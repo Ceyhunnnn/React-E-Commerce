@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Container from "components/Container";
 import { Heart, ShoppingVehicle } from "components/Icons/Icons";
 import { Link, NavLink } from "react-router-dom";
+import { Select } from "antd";
+import Config from "./../../config";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
@@ -26,6 +28,16 @@ function Header() {
       id: 3,
       title: t("header.signup"),
       link: "/signup",
+    },
+  ];
+  const selectOptions = [
+    {
+      value: "en",
+      label: t("languages.en"),
+    },
+    {
+      value: "tr",
+      label: t("languages.tr"),
     },
   ];
   return (
@@ -59,10 +71,11 @@ function Header() {
               />
               <Heart width={22} height={22} />
               <ShoppingVehicle width={25} height={25} />
-              <select name="languages" className="language-select">
-                <option>English</option>
-                <option>Turkish</option>
-              </select>
+
+              <Select
+                options={selectOptions}
+                defaultValue={Config.lang.default}
+              />
             </div>
           </div>
         </header>
