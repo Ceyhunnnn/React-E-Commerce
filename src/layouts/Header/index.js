@@ -2,12 +2,13 @@ import React from "react";
 import "./index.css";
 import { useTranslation } from "react-i18next";
 import Container from "components/Container";
-import { Heart, Profile, ShoppingVehicle } from "components/Icons/Icons";
+import { Profile } from "components/Icons/Icons";
 import { Link, NavLink } from "react-router-dom";
 import { Button, Input, Popover, Select } from "antd";
 import Config from "./../../config";
 import PathConstants from "PathConstants";
 import PopoverContent from "./components/PopoverContent";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
@@ -79,12 +80,13 @@ function Header() {
                 options={selectOptions}
                 defaultValue={Config.lang.default}
               />
-              <Heart width={42} height={42} />
-              <ShoppingVehicle width={45} height={45} />
+              <HeartOutlined style={{ fontSize: "22px" }} />
+              <ShoppingCartOutlined style={{ fontSize: "22px" }} />
               <Popover
                 placement="bottomRight"
                 title={Config.app.title}
                 content={<PopoverContent />}
+                arrow={false}
               >
                 <Button>
                   <Profile width={25} height={25} />
