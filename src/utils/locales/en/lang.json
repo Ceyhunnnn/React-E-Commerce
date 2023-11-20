@@ -55,5 +55,10 @@
     "languages":{
         "en":"English",
         "tr":"Turkish"
+    },
+    "error":{
+        "title":"404 Not Found",
+        "desc":"Your visited page not found. You may go home page.",
+        "buttonText":"Back to home page"
     }
 }
