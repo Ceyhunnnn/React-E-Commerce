@@ -1,3 +1,5 @@
+import PathConstants from "./PathConstants";
+
 const { lazy } = require("react");
 
 const MainLayout = lazy(() => import("./layouts/MainLayout"));
@@ -9,7 +11,7 @@ const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 
 const routes = [
   {
-    path: "/",
+    path: PathConstants.HOME,
     element: <MainLayout />,
     children: [
       {
@@ -17,19 +19,19 @@ const routes = [
         element: <HomePage />,
       },
       {
-        path: "/about",
+        path: PathConstants.ABOUT,
         element: <AboutPage />,
       },
       {
-        path: "/contact",
+        path: PathConstants.CONTACT,
         element: <ContactPage />,
       },
       {
-        path: "/signup",
+        path: PathConstants.SINGUP,
         element: <SignupPage />,
       },
       {
-        path: "*",
+        path: PathConstants.ERROR,
         element: <ErrorPage />,
       },
     ],

@@ -6,28 +6,29 @@ import { Heart, ShoppingVehicle } from "components/Icons/Icons";
 import { Link, NavLink } from "react-router-dom";
 import { Select } from "antd";
 import Config from "./../../config";
+import PathConstants from "PathConstants";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
     {
       id: 0,
       title: t("header.home"),
-      link: "/",
+      link: PathConstants.HOME,
     },
     {
       id: 1,
       title: t("header.about"),
-      link: "/about",
+      link: PathConstants.ABOUT,
     },
     {
       id: 2,
       title: t("header.contact"),
-      link: "/contact",
+      link: PathConstants.CONTACT,
     },
     {
       id: 3,
       title: t("header.signup"),
-      link: "/signup",
+      link: PathConstants.SINGUP,
     },
   ];
   const selectOptions = [
