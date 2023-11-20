@@ -60,5 +60,10 @@
         "title":"404 Not Found",
         "desc":"Your visited page not found. You may go home page.",
         "buttonText":"Back to home page"
+    },
+    "accountMenu":{
+        "account":"My Account",
+        "myReviews":"My Reviews",
+        "logout":"Logout"
     }
 }

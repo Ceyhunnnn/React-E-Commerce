@@ -46,3 +46,15 @@
 .is-not-active {
     color: black;
 }
+
+.popover-item {
+    margin: 5px 0px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.popover-item:hover {
+    background-color: #eaeaea;
+    border-radius: 5px;
+    padding: 3px;
+}

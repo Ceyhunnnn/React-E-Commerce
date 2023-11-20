@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Button, Input, Popover, Select } from "antd";
 import Config from "./../../config";
 import PathConstants from "PathConstants";
+import PopoverContent from "./components/PopoverContent";
 function Header() {
   const { t } = useTranslation();
   const headerMenu = [
@@ -82,8 +83,8 @@ function Header() {
               <ShoppingVehicle width={45} height={45} />
               <Popover
                 placement="bottomRight"
-                title={"text"}
-                content={"content"}
+                title={Config.app.title}
+                content={<PopoverContent />}
               >
                 <Button>
                   <Profile width={25} height={25} />
