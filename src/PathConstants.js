@@ -3,6 +3,7 @@ const PathConstants = {
   ABOUT: "about",
   CONTACT: "contact",
   SINGUP: "signup",
+  ACCOUNT: "account",
   ERROR: "*",
 };
 

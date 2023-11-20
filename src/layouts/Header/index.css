@@ -26,13 +26,6 @@
     align-items: center;
 }
 
-.search-input {
-    padding: 8px;
-    border-radius: 4px;
-    border: none;
-    background-color: #F5F5F5;
-    width: 170px;
-}
 
 .search-input::placeholder {
     opacity: 0.5;

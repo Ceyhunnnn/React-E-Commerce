@@ -8,7 +8,7 @@ const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
-
+const AccountPage = lazy(() => import("./pages/AccountPage/AccountPage"));
 const routes = [
   {
     path: PathConstants.HOME,
@@ -29,6 +29,10 @@ const routes = [
       {
         path: PathConstants.SINGUP,
         element: <SignupPage />,
+      },
+      {
+        path: PathConstants.ACCOUNT,
+        element: <AccountPage />,
       },
       {
         path: PathConstants.ERROR,
