@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import Container from "components/Container";
-import { Facebook, Send, Instagram, Linkedln } from "components/Icons/Icons";
+import { Facebook, Send, Instagram, Linkedln, X } from "components/Icons/Icons";
 function Footer() {
   return (
     <footer className="footer-area">
@@ -61,6 +61,7 @@ function Footer() {
                 <Facebook />
                 <Instagram />
                 <Linkedln />
+                <X />
               </li>
             </ul>
           </div>

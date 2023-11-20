@@ -1,0 +1,44 @@
+.about-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-row-gap: 20px;
+    margin: 40px 0px;
+}
+
+.about {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    gap: 25px;
+}
+
+.about-img {
+    grid-area: 1 / 2 / 2 / 3;
+    border-radius: 4px;
+    width: 585px;
+}
+
+.about-text {
+    font-family: "Poppins";
+}
+
+.about-card-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    place-content: center;
+    place-items: center;
+}
+
+.about-card {
+    width: 350;
+    height: 550;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
