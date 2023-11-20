@@ -85,7 +85,12 @@ function Contact() {
               <Input.TextArea
                 style={{ backgroundColor: "#eaeaea" }}
                 rows={6}
+                autoSize={{
+                  minRows: 5,
+                  maxRows: 5,
+                }}
                 placeholder={t("form.message")}
+                allowClear
               />
             </Form.Item>
             <div className="contact-button-area">
