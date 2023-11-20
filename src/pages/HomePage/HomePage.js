@@ -4,12 +4,12 @@ import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import GeneralTitle from "components/GeneralTitle";
 import CountdownTimer from "utils/CountdownTimer";
-import { ArrowLeft, ArrowRight } from "components/Icons/Icons";
 import ShoppingCard from "components/ShoppingCard";
 import { Carousel } from "antd";
 import Button from "components/Button";
 import CategoriesCard from "components/CategoriesCard";
 import { useScreenSize } from "hooks/useScreenSize";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 function Home() {
   const [size] = useScreenSize();
@@ -85,11 +85,11 @@ function Home() {
           <CountdownTimer targetDate={dateTimeAfterThreeDays} />
         </div>
         <div className="slider-area">
-          <ArrowLeft
+          <LeftOutlined
             className="arrow-circle"
             onClick={() => carouselRef.current.prev()}
           />
-          <ArrowRight
+          <RightOutlined
             className="arrow-circle"
             onClick={() => carouselRef.current.next()}
           />
