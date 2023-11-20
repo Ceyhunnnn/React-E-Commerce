@@ -2,35 +2,37 @@ import React from "react";
 import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
+import { useTranslation } from "react-i18next";
 function Register() {
+  const { t } = useTranslation();
   const registerForm = useForm();
   const formItems = [
     {
       id: 0,
       name: "name",
-      label: "Name",
-      placeholder: "Name",
+      label: t("form.name"),
+      placeholder: t("form.name"),
       type: "text",
     },
     {
       id: 1,
       name: "email",
-      label: "Email Address",
-      placeholder: "Email Address",
+      label: t("form.email"),
+      placeholder: t("form.email"),
       type: "text",
     },
     {
       id: 2,
       name: "password",
-      label: "Password",
-      placeholder: "Password",
+      label: t("form.password"),
+      placeholder: t("form.password"),
       type: "password",
     },
   ];
   return (
     <>
-      <h1 className="font-36">Create an account</h1>
-      <p className="font-14">Enter your details below</p>
+      <h1 className="font-36">{t("registerTitle")}</h1>
+      <p className="font-14">{t("signupDesc")}</p>
       <Form
         form={registerForm}
         style={{ marginTop: "25px" }}
@@ -55,7 +57,7 @@ function Register() {
         ))}
       </Form>
       <div className="flex-area">
-        <Button title="Create Account" width={200} height={45} />
+        <Button title={t("form.titles.register")} width={200} height={45} />
       </div>
     </>
   );

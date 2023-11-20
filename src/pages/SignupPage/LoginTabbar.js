@@ -2,28 +2,30 @@ import React from "react";
 import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
+import { useTranslation } from "react-i18next";
 function Login() {
+  const { t } = useTranslation();
   const loginForm = useForm();
   const formItems = [
     {
       id: 0,
       name: "email",
-      label: "Email Address",
-      placeholder: "Email Address",
+      label: t("form.email"),
+      placeholder: t("form.email"),
       type: "text",
     },
     {
       id: 1,
       name: "password",
-      label: "Password",
-      placeholder: "Password",
+      label: t("form.password"),
+      placeholder: t("form.password"),
       type: "password",
     },
   ];
   return (
     <>
-      <h1 className="font-36">Log in to Exclusive</h1>
-      <p className="font-14">Enter your details below</p>
+      <h1 className="font-36">{t("loginTitle")}</h1>
+      <p className="font-14">{t("signupDesc")}</p>
       <Form
         style={{ marginTop: "25px" }}
         form={loginForm}
@@ -48,7 +50,7 @@ function Login() {
         ))}
       </Form>
       <div className="flex-area">
-        <Button title="Login" width={200} height={45} />
+        <Button title={t("form.titles.login")} width={200} height={45} />
       </div>
     </>
   );
