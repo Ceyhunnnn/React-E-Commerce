@@ -5,7 +5,7 @@ function TopHeader() {
   const { t } = useTranslation();
   return (
     <div className="header">
-      {t("topHeader.summer")}
+      <p>{t("topHeader.summer")}</p>
       <p className="shop-title">{t("topHeader.shopNow")}</p>
     </div>
   );
