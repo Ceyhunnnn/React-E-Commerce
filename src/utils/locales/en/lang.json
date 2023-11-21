@@ -40,12 +40,15 @@
     "loginTitle":"Log in to Exclusive",
     "signupDesc":"Enter your details below",
     "registerTitle":"Create an account",
+    "saveChanges":"Save Changes",
     "form":{
         "name":"Name",
+        "lastName":"Last Name",
         "email":"Email Address",
         "password":"Password",
         "message":"Your Message",
         "phone":"Phone",
+        "address":"Address",
         "titles":{
             "login":"Login",
             "register":"Create Account",
@@ -65,5 +68,9 @@
         "account":"My Account",
         "myReviews":"My Reviews",
         "logout":"Logout"
+    },
+    "events":{
+        "ok":"Ok",
+        "cancel":"Cancel"
     }
 }

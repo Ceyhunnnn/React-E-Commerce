@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./index.css";
 function Button({ title, width = "", height = "", onClick }) {
   return (

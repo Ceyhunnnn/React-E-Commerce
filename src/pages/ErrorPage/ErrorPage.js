@@ -15,7 +15,7 @@ function ErrorPage() {
         <p className="font-16">{t("error.desc")}</p>
         <Button
           title={t("error.buttonText")}
-          onClick={() => navigate(PathConstants.ERROR)}
+          onClick={() => navigate(PathConstants.HOME)}
         />
       </main>
     </Container>
