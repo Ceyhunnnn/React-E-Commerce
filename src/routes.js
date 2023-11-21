@@ -9,6 +9,9 @@ const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 const AccountPage = lazy(() => import("./pages/AccountPage/AccountPage"));
+const CategoryProductPage = lazy(() =>
+  import("./pages/CategoryProductPage/CategoryProductPage")
+);
 const routes = [
   {
     path: PathConstants.HOME,
@@ -37,6 +40,10 @@ const routes = [
       {
         path: PathConstants.ERROR,
         element: <ErrorPage />,
+      },
+      {
+        path: PathConstants.CATEGORY_PRODUCT_PAGE + "/:id",
+        element: <CategoryProductPage />,
       },
     ],
   },

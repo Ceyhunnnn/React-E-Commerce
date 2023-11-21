@@ -5,6 +5,7 @@ const PathConstants = {
   SINGUP: "signup",
   ACCOUNT: "account",
   ERROR: "*",
+  CATEGORY_PRODUCT_PAGE: "products",
 };
 
 export default PathConstants;

@@ -10,6 +10,8 @@ import Button from "components/Button";
 import CategoriesCard from "components/CategoriesCard";
 import { useScreenSize } from "hooks/useScreenSize";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import PathConstants from "PathConstants";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [size] = useScreenSize();
@@ -19,38 +21,47 @@ function Home() {
     {
       id: 0,
       title: t("mainMenuCategories.fashion"),
+      url_id: "/woman-fashion",
     },
     {
       id: 1,
       title: t("mainMenuCategories.menFashion"),
+      url_id: "/men-fashion",
     },
     {
       id: 2,
       title: t("mainMenuCategories.electronics"),
+      url_id: "/electronics",
     },
     {
       id: 3,
       title: t("mainMenuCategories.home"),
+      url_id: "/home",
     },
     {
       id: 4,
       title: t("mainMenuCategories.medicine"),
+      url_id: "/medicine",
     },
     {
       id: 5,
       title: t("mainMenuCategories.sport"),
+      url_id: "/sport",
     },
     {
       id: 6,
       title: t("mainMenuCategories.baby"),
+      url_id: "/baby",
     },
     {
       id: 7,
       title: t("mainMenuCategories.pets"),
+      url_id: "/pets",
     },
     {
       id: 8,
       title: t("mainMenuCategories.healthy"),
+      url_id: "/healthy",
     },
   ];
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
@@ -71,7 +82,12 @@ function Home() {
       <div className="page-content">
         <aside className="aside-menu">
           {categories.map((cat) => (
-            <div key={cat.id}>{cat.title}</div>
+            <Link
+              to={PathConstants.CATEGORY_PRODUCT_PAGE + cat.url_id}
+              key={cat.id}
+            >
+              {cat.title}
+            </Link>
           ))}
         </aside>
         <main className="main-area">
