@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AccountPage.css";
 import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import { Divider, Form, Input, Upload } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 function AccountPage() {
   const { t } = useTranslation();
   const form = useForm();
@@ -66,7 +67,39 @@ function AccountPage() {
       disabled: true,
     },
   ];
+  const [imageUrl, setImageUrl] = useState();
+  const [loading, setLoading] = useState(false);
+  const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  };
+  const handleChange = (info) => {
+    if (info.file.status === "uploading") {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (url) => {
+        setLoading(false);
+        setImageUrl(url);
+      });
+    }
+  };
   const submitPersonForm = () => {};
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
   return (
     <Container>
       <div class="form-area">
@@ -77,9 +110,20 @@ function AccountPage() {
             name="avatar"
             listType="picture-circle"
             showUploadList={false}
+            onChange={handleChange}
             action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
           >
-            Profile Photo
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt="avatar"
+                style={{
+                  width: "100%",
+                }}
+              />
+            ) : (
+              uploadButton
+            )}
           </Upload>
         </div>
         <Form
