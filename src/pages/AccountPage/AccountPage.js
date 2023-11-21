@@ -2,7 +2,7 @@ import React from "react";
 import "./AccountPage.css";
 import Container from "components/Container";
 import { useTranslation } from "react-i18next";
-import { Divider, Form, Input } from "antd";
+import { Divider, Form, Input, Upload } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
 function AccountPage() {
@@ -70,48 +70,56 @@ function AccountPage() {
   return (
     <Container>
       <div class="form-area">
-        <div>
-          <h1 className="edit-title">Edit Your Profile</h1>
-          <Divider />
-          <Form
-            form={form}
-            className="form-item-area"
-            name="personForm"
-            layout="vertical"
-            style={{
-              maxWidth: 800,
-            }}
+        <h1 className="edit-title">Edit Your Profile</h1>
+        <Divider />
+        <div className="photo-area">
+          <Upload
+            name="avatar"
+            listType="picture-circle"
+            showUploadList={false}
+            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
           >
-            <div className="form-grid">
-              {formItems.map((input) => (
-                <Form.Item
-                  key={input.id}
-                  label={input.label}
-                  name={input.name}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input
-                    required
-                    disabled={input.disabled}
-                    placeholder={input.placeholder}
-                    type={input.type}
-                  />
-                </Form.Item>
-              ))}
-            </div>
-            <div className="button-area-end">
-              <Button
-                title={t("saveChanges")}
-                height="40px"
-                onClick={submitPersonForm}
-              />
-            </div>
-          </Form>
+            Profile Photo
+          </Upload>
         </div>
+        <Form
+          form={form}
+          className="form-item-area"
+          name="personForm"
+          layout="vertical"
+          style={{
+            maxWidth: 800,
+          }}
+        >
+          <div className="form-grid">
+            {formItems.map((input) => (
+              <Form.Item
+                key={input.id}
+                label={input.label}
+                name={input.name}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  required
+                  disabled={input.disabled}
+                  placeholder={input.placeholder}
+                  type={input.type}
+                />
+              </Form.Item>
+            ))}
+          </div>
+          <div className="button-area-end">
+            <Button
+              title={t("saveChanges")}
+              height="40px"
+              onClick={submitPersonForm}
+            />
+          </div>
+        </Form>
       </div>
     </Container>
   );

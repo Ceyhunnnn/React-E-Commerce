@@ -1,5 +1,6 @@
 .form-area {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px;
@@ -25,4 +26,10 @@
     grid-template-rows: 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+}
+
+.photo-area {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
 }
