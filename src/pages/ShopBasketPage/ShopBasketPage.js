@@ -4,6 +4,7 @@ import Container from "components/Container";
 import { Input, InputNumber } from "antd";
 import { useTranslation } from "react-i18next";
 import Button from "components/Button";
+import { Trash } from "components/Icons/Icons";
 
 function ShopBasketPage() {
   const { t } = useTranslation();
@@ -36,8 +37,11 @@ function ShopBasketPage() {
         </div>
         {basketList.map((bas) => (
           <div className="basket-grid" key={bas.id}>
-            <div className="display-flex">
-              <img src={bas.img} alt="ProdcutImage" width={50} height={50} />
+            <div className="display-flex ">
+              <div className="img-rel">
+                <img src={bas.img} alt="ProdcutImage" width={50} height={50} />
+                <Trash className="garbage" />
+              </div>
               <p>{bas.product}</p>
             </div>
             <p>{bas.price}</p>
