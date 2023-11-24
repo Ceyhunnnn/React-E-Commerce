@@ -84,7 +84,7 @@ function Header() {
                   <ul key={header.id}>
                     <li>
                       <NavLink
-                        onClick={handleClick}
+                        onClick={() => setIsOpen(false)}
                         className={({ isActive }) =>
                           isActive ? "is-active" : "is-not-active"
                         }
@@ -100,7 +100,7 @@ function Header() {
                 <Select
                   style={isOpen && { height: "24px" }}
                   options={selectOptions}
-                  onChange={handleClick}
+                  onChange={() => setIsOpen(false)}
                   defaultValue={Config.lang.default}
                 />
                 <HeartOutlined style={{ fontSize: "20px" }} />
