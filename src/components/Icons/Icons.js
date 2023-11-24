@@ -169,3 +169,17 @@ export const CustomMail = () => {
     </svg>
   );
 };
+export const Hamburger = (props) => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fill="#000000"
+      d="M4 17.27v-1h16v1H4Zm0-4.77v-1h16v1H4Zm0-4.77v-1h16v1H4Z"
+    ></path>
+  </svg>
+);
