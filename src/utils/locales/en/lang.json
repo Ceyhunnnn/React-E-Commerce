@@ -41,6 +41,9 @@
     "signupDesc":"Enter your details below",
     "registerTitle":"Create an account",
     "saveChanges":"Save Changes",
+    "couponCode":"Coupon Code",
+    "applyCoupon":"Apply Coupon",
+    "process":"Procees to checkout",
     "form":{
         "name":"Name",
         "lastName":"Last Name",

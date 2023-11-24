@@ -104,7 +104,9 @@ function Header() {
                   defaultValue={Config.lang.default}
                 />
                 <HeartOutlined style={{ fontSize: "20px" }} />
-                <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                <Link to={PathConstants.SHOP_BASKET}>
+                  <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                </Link>
                 <Popover
                   placement="bottomRight"
                   title={Config.app.title}
