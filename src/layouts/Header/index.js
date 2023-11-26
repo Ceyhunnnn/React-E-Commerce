@@ -17,8 +17,10 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Hamburger } from "components/Icons/Icons";
+import { useScreenSize } from "hooks/useScreenSize";
 
 function Header() {
+  const [size] = useScreenSize();
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
   const headerMenu = [
@@ -64,6 +66,7 @@ function Header() {
       return !prev;
     });
   };
+  console.log(size);
   return (
     <>
       <Container>
@@ -78,7 +81,11 @@ function Header() {
               height={30}
               className="hamburger-menu"
             />
-            <div className={`${isOpen ? "responsive-menu" : "menu-content"}`}>
+            <div
+              className={`${
+                isOpen && size <= 674 ? "responsive-menu" : "menu-content"
+              }`}
+            >
               <div className="menu-area">
                 {headerMenu.map((header) => (
                   <ul key={header.id}>
