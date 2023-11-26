@@ -83,6 +83,7 @@ function Home() {
         <aside className="aside-menu">
           {categories.map((cat) => (
             <Link
+              className="category"
               to={PathConstants.CATEGORY_PRODUCT_PAGE + cat.url_id}
               key={cat.id}
             >
@@ -91,7 +92,13 @@ function Home() {
           ))}
         </aside>
         <main className="main-area">
-          <img src="/images/slider1.png" alt="SliderImages" />
+          <Carousel autoplay draggable>
+            <img src="/images/slider1.png" alt="SliderImages" />
+            <img src="/images/slider1.png" alt="SliderImages" />
+            <img src="/images/slider1.png" alt="SliderImages" />
+            <img src="/images/slider1.png" alt="SliderImages" />
+            <img src="/images/slider1.png" alt="SliderImages" />
+          </Carousel>
         </main>
       </div>
       <GeneralTitle title={t("todays")} />

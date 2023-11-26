@@ -102,7 +102,7 @@ function AccountPage() {
   );
   return (
     <Container>
-      <div class="form-area">
+      <div className="form-area">
         <h1 className="edit-title">Edit Your Profile</h1>
         <Divider />
         <div className="photo-area">

@@ -66,7 +66,6 @@ function Header() {
       return !prev;
     });
   };
-  console.log(size);
   return (
     <>
       <Container>

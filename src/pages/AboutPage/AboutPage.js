@@ -2,8 +2,8 @@ import React from "react";
 import "./AboutPage.css";
 import Container from "components/Container";
 import { useTranslation } from "react-i18next";
-import AboutCard from "./Components/AboutCard";
-import ServiceCard from "./Components/ServiceCard";
+import AboutCard from "./components/AboutCard";
+import ServiceCard from "./components/ServiceCard";
 
 function About() {
   const { t } = useTranslation();
