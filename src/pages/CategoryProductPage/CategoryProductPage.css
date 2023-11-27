@@ -1,0 +1,25 @@
+.category-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+    margin: 50px 0px;
+
+}
+
+.shopping-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 30px;
+    place-content: center;
+    place-items: center;
+    margin-bottom: 80px;
+}
+
+.category-title h1 {
+    font-size: 25px;
+    text-decoration: underline;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
