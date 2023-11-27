@@ -1,0 +1,130 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 40px;
+    grid-row-gap: 10px;
+    place-content: center;
+    margin-bottom: 100px;
+}
+
+.product-images {
+    grid-area: 1 / 1 / 5 / 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+
+}
+
+.product-images img {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 138px;
+}
+
+.product-image {
+    grid-area: 1 / 2 / 5 / 4;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.product-detail {
+    grid-area: 1 / 4 / 5 / 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.count-area {
+    display: flex;
+}
+
+.count-content {
+    width: 80px;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}
+
+.event-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.color-type {
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.color-type-small {
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+}
+
+.selected-color {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-area {
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.cargo-return-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.related-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 30px;
+    place-content: center;
+    place-items: center;
+    margin-bottom: 80px;
+}

@@ -75,5 +75,7 @@
     "events":{
         "ok":"Ok",
         "cancel":"Cancel"
-    }
+    },
+    "colors":"Colors",
+    "buy":"Buy Now"
 }
