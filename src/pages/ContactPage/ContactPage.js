@@ -1,6 +1,5 @@
 import React from "react";
 import "./ContactPage.css";
-import Container from "components/Container";
 import { Phone, CustomMail } from "components/Icons/Icons";
 import { Divider, Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
@@ -33,7 +32,7 @@ function Contact() {
     },
   ];
   return (
-    <Container>
+    <>
       <div className="sized-box contact-area">
         <div className="contact-info custom-card">
           <div className="display-flex">
@@ -98,7 +97,7 @@ function Contact() {
           </Form>
         </div>
       </div>
-    </Container>
+    </>
   );
 }
 

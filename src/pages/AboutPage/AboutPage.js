@@ -1,6 +1,5 @@
 import React from "react";
 import "./AboutPage.css";
-import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import AboutCard from "./components/AboutCard";
 import ServiceCard from "./components/ServiceCard";
@@ -48,7 +47,7 @@ function About() {
     },
   ];
   return (
-    <Container>
+    <>
       <div className="about-area">
         <div className="about">
           <p className="font-36 about-text">{t("ourStory")}</p>
@@ -83,7 +82,7 @@ function About() {
           />
         ))}
       </div>
-    </Container>
+    </>
   );
 }
 

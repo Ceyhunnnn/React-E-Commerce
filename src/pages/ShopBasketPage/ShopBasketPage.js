@@ -1,6 +1,5 @@
 import React from "react";
 import "./ShopBasketPage.css";
-import Container from "components/Container";
 import { Input, InputNumber } from "antd";
 import { useTranslation } from "react-i18next";
 import Button from "components/Button";
@@ -27,7 +26,7 @@ function ShopBasketPage() {
     },
   ];
   return (
-    <Container>
+    <>
       <div className="basket-area">
         <div className="basket-grid">
           <p>Product</p>
@@ -82,7 +81,7 @@ function ShopBasketPage() {
           </div>
         </div>
       </div>
-    </Container>
+    </>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import "./HomePage.css";
-import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import GeneralTitle from "components/GeneralTitle";
 import CountdownTimer from "utils/CountdownTimer";
@@ -78,7 +77,7 @@ function Home() {
   }
 
   return (
-    <Container>
+    <>
       <div className="page-content">
         <aside className="aside-menu">
           {categories.map((cat) => (
@@ -186,7 +185,7 @@ function Home() {
           <u>Shop Now</u>
         </div>
       </div>
-    </Container>
+    </>
   );
 }
 

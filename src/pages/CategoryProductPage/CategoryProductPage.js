@@ -1,7 +1,6 @@
 import React from "react";
 import "./CategoryProductPage.css";
 import { useLocation } from "react-router-dom";
-import Container from "components/Container";
 import { Button, Select } from "antd";
 import ShoppingCard from "components/ShoppingCard";
 
@@ -24,7 +23,7 @@ function CategoryProductPage() {
   ];
   const title = path.pathname.split("/")[2];
   return (
-    <Container>
+    <>
       <div className="category-title">
         <h1>{title[0].toUpperCase() + title.slice(1)}</h1>
         <Select
@@ -49,7 +48,7 @@ function CategoryProductPage() {
       <div className="flex-area" style={{ margin: "30px 0px" }}>
         <Button>More</Button>
       </div>
-    </Container>
+    </>
   );
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import "./SignupPage.css";
-import Container from "components/Container";
 import RegisterTabbar from "./RegisterTabbar";
 import { Tabs } from "antd";
 import LoginTabbar from "./LoginTabbar";
@@ -19,7 +18,7 @@ function SignUp() {
     },
   ];
   return (
-    <Container>
+    <>
       <div className="signup-area">
         <img
           className="signup-img"
@@ -30,7 +29,7 @@ function SignUp() {
           <Tabs centered defaultActiveKey="1" items={tabItems} />
         </div>
       </div>
-    </Container>
+    </>
   );
 }
 

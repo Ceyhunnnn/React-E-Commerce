@@ -1,3 +1,4 @@
+import Container from "components/Container";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import TopHeader from "layouts/TopHeader";
@@ -9,7 +10,9 @@ function MainLayout() {
     <>
       <TopHeader />
       <Header />
-      <Outlet />
+      <Container>
+        <Outlet />
+      </Container>
       <Footer />
     </>
   );

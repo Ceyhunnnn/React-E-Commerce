@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./AccountPage.css";
-import Container from "components/Container";
 import { useTranslation } from "react-i18next";
 import { Divider, Form, Input, Upload } from "antd";
 import useForm from "hooks/useForm";
@@ -101,7 +100,7 @@ function AccountPage() {
     </div>
   );
   return (
-    <Container>
+    <>
       <div className="form-area">
         <h1 className="edit-title">Edit Your Profile</h1>
         <Divider />
@@ -165,7 +164,7 @@ function AccountPage() {
           </div>
         </Form>
       </div>
-    </Container>
+    </>
   );
 }
 
