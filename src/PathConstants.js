@@ -6,6 +6,7 @@ const PathConstants = {
   ACCOUNT: "account",
   ERROR: "*",
   CATEGORY_PRODUCT_PAGE: "products",
+  PRODUCT_DETAIL: "prodcut-detail",
   SHOP_BASKET: "basket",
 };
 

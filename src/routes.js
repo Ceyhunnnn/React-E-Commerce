@@ -15,6 +15,9 @@ const CategoryProductPage = lazy(() =>
 const ShopBasketPage = lazy(() =>
   import("./pages/ShopBasketPage/ShopBasketPage")
 );
+const ProductDetailPage = lazy(() =>
+  import("./pages/ProductDetailPage/ProductDetailPage")
+);
 const routes = [
   {
     path: PathConstants.HOME,
@@ -51,6 +54,10 @@ const routes = [
       {
         path: PathConstants.SHOP_BASKET,
         element: <ShopBasketPage />,
+      },
+      {
+        path: PathConstants.PRODUCT_DETAIL,
+        element: <ProductDetailPage />,
       },
     ],
   },
