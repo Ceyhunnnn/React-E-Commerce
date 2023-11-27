@@ -9,7 +9,7 @@ function ShoppingCard() {
   return (
     <div className="shop-card">
       <div className="shop-photo">
-        <Link to={PathConstants.PRODUCT_DETAIL}>
+        <Link to={`/${PathConstants.PRODUCT_DETAIL}`}>
           <img src="/images/play.svg" alt="ShoppingPhotos" />
         </Link>
         <div className="shop-event">
