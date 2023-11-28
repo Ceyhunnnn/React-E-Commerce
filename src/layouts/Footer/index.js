@@ -6,10 +6,9 @@ function Footer() {
   return (
     <footer className="footer-area">
       <Container>
-        <div className="footer-body">
           <div className="footer-grid">
             <ul className="fot-sect1">
-              <li className="font-16">Exclusive</li>
+              <li className="font-16 text-underline">Exclusive</li>
               <li className="font-14">Subscribe</li>
               <li className="font-14">Get 10% off your first order</li>
               <div className="display-flex">
@@ -18,15 +17,15 @@ function Footer() {
               </div>
             </ul>
             <ul className="fot-sect2">
-              <li className="font-16">Support</li>
+              <li className="font-16 text-underline">Support</li>
               <li className="font-14">
-                111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
+                111 Bijoy sarani, Dhaka,<br></br> DH 1515, Bangladesh.
               </li>
               <li className="font-14">exclusive@gmail.com</li>
               <li className="font-14">+88015-88888-9999</li>
             </ul>
             <ul className="fot-sect3">
-              <li className="font-16">Account</li>
+              <li className="font-16 text-underline">Account</li>
               <li className="font-14">My Account</li>
               <li className="font-14">Login / Register</li>
               <li className="font-14">Cart</li>
@@ -34,14 +33,7 @@ function Footer() {
               <li className="font-14">Shop</li>
             </ul>
             <ul className="fot-sect4">
-              <li className="font-16">Quick Link</li>
-              <li className="font-14">Privacy Policy</li>
-              <li className="font-14">Terms Of Use</li>
-              <li className="font-14">FAQ</li>
-              <li className="font-14">Contact</li>
-            </ul>
-            <ul className="fot-sect5">
-              <li className="font-16">Download App</li>
+              <li className="font-16 text-underline ">Download App</li>
               <li className="font-14">Save $3 with App New User Only</li>
               <li className="social-media">
                 <img
@@ -65,7 +57,6 @@ function Footer() {
               </li>
             </ul>
           </div>
-        </div>
       </Container>
     </footer>
   );

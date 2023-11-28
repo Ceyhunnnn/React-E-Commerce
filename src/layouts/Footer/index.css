@@ -3,25 +3,22 @@
     color: white;
 }
 
-.footer-body {
-    padding: 30px 0px;
-}
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 10px;
     place-items: center;
     align-items: start;
+    padding: 30px 10px;
 }
 
 .fot-sect1,
 .fot-sect2,
 .fot-sect3,
-.fot-sect4,
-.fot-sect5 {
+.fot-sect4 {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -29,12 +26,10 @@
 
 .fot-sect1 {
     grid-area: 1 / 1 / 2 / 2;
-
 }
 
 .fot-sect2 {
     grid-area: 1 / 2 / 2 / 3;
-
 }
 
 .fot-sect3 {
@@ -45,9 +40,7 @@
     grid-area: 1 / 4 / 2 / 5;
 }
 
-.fot-sect5 {
-    grid-area: 1 / 5 / 2 / 6;
-}
+
 
 .fot-sect1 input {
     background-color: black;
@@ -61,4 +54,75 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .fot-sect1,
+    .fot-sect2,
+    .fot-sect3,
+    .fot-sect4 {
+        width: 250px;
+    }
+
+    .fot-sect1 {
+        grid-area: 1 / 1 / 2 / 2;
+
+    }
+
+    .fot-sect2 {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .fot-sect3 {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .fot-sect4 {
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+}
+
+@media (min-width:601px) and (max-width:850px) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        place-content: start;
+    }
+
+    .fot-sect1,
+    .fot-sect2,
+    .fot-sect3,
+    .fot-sect4 {
+        width: 250px;
+    }
+
+    .fot-sect1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .fot-sect2 {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .fot-sect3 {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .fot-sect4 {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+
 }
