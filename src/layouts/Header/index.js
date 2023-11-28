@@ -55,17 +55,7 @@ function Header() {
       label: t("languages.tr"),
     },
   ];
-  // const onSearch = (value, _e, info) => console.log(info?.source, value);
-  const handleClick = () => {
-    setIsOpen((prev) => {
-      if (!prev) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.removeAttribute("style");
-      }
-      return !prev;
-    });
-  };
+
   return (
     <>
       <Container>
@@ -75,7 +65,7 @@ function Header() {
               {t("exclusive")}
             </Link>
             <Hamburger
-              onClick={handleClick}
+              onClick={() => setIsOpen((prev) => !prev)}
               width={30}
               height={30}
               className="hamburger-menu"
