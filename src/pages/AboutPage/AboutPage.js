@@ -54,11 +54,13 @@ function About() {
           <p className="about-text">{t("aboutDesc")}</p>
           <p className="about-text">{t("aboutDesc2")}</p>
         </div>
-        <img
-          className="about-img"
-          src="/images/aboutpage.png"
-          alt="AboutPhoto"
-        />
+        <div className="flex-area">
+          <img
+            className="about-img"
+            src="/images/aboutpage.png"
+            alt="AboutPhoto"
+          />
+        </div>
       </div>
       <div className="about-card-area sized-box">
         {aboutPersonInfo.map((person) => (
