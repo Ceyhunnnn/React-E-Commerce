@@ -40,8 +40,6 @@
     grid-area: 1 / 4 / 2 / 5;
 }
 
-
-
 .fot-sect1 input {
     background-color: black;
     border: 1px solid #ccc;
@@ -52,8 +50,8 @@
 
 .social-media {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 @media only screen and (max-width: 600px) {

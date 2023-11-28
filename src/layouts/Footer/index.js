@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import Container from "components/Container";
-import { Facebook, Send, Instagram, Linkedln, X } from "components/Icons/Icons";
+import { Facebook, Send, Instagram, Linkedln, X, LogosGooglePlayIcon, LogosAppleAppStore } from "components/Icons/Icons";
 function Footer() {
   return (
     <footer className="footer-area">
@@ -36,18 +36,8 @@ function Footer() {
               <li className="font-16 text-underline ">Download App</li>
               <li className="font-14">Save $3 with App New User Only</li>
               <li className="social-media">
-                <img
-                  src="/images/GooglePlay.png"
-                  alt="PlayStore"
-                  width={80}
-                  height={30}
-                />
-                <img
-                  src="/images/AppStore.png"
-                  alt="AppStore"
-                  width={80}
-                  height={30}
-                />
+                <LogosGooglePlayIcon width={25} height={25}/>
+                <LogosAppleAppStore width={25} height={25}/>
               </li>
               <li className="social-media">
                 <Facebook />
