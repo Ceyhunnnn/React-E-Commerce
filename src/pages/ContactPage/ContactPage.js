@@ -88,7 +88,6 @@ function Contact() {
                   maxRows: 6,
                 }}
                 placeholder={t("form.message")}
-                allowClear
               />
             </Form.Item>
             <div className="contact-button-area">
