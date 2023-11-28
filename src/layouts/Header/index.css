@@ -103,7 +103,8 @@
 
     .responsive-menu {
         display: flex;
-        backdrop-filter: blur(100px);
+        /* backdrop-filter: blur(100px); */
+        background-color: white;
         flex-direction: column;
         justify-content: space-between;
         position: absolute;
