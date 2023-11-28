@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
+    grid-column-gap: 20px;
     grid-row-gap: 20px;
     margin: 40px 0px;
 }
@@ -9,7 +10,8 @@
 .signup-img {
     grid-area: 1 / 1 / 2 / 2;
     border-radius: 4px;
-    width: 585px;
+    width: 100% !important;
+    margin-left: 20px;
 }
 
 .signup {
@@ -43,4 +45,25 @@
 
 .signup .ant-tabs-top>.ant-tabs-nav::before {
     border-color: transparent;
+}
+
+@media only screen and (max-width:875px) {
+    .signup-area {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        margin: 10px 20px;
+    }
+
+    .signup-img {
+        grid-area: 1 / 1 / 2 / 2;
+        margin: 0px;
+    }
+
+    .signup {
+        grid-area: 2 / 1 / 3 / 2;
+        padding: 10px;
+    }
+
 }
