@@ -6,7 +6,7 @@ import CountdownTimer from "utils/CountdownTimer";
 import ShoppingCard from "components/ShoppingCard";
 import { Carousel } from "antd";
 import Button from "components/Button";
-import CategoriesCard from "components/CategoriesCard";
+// import CategoriesCard from "components/CategoriesCard";
 import { useScreenSize } from "hooks/useScreenSize";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import PathConstants from "PathConstants";
@@ -71,6 +71,9 @@ function Home() {
       return 1;
     }
     if (size > 576 && size < 992) {
+      return 2;
+    }
+    if (size > 993 && size < 1028) {
       return 3;
     }
     return 4;
@@ -104,7 +107,9 @@ function Home() {
       <div className="sales-content">
         <div className="sales-area">
           <h1 className="sales-title">{t("sales")}</h1>
-          <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+          <div className="time">
+            <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+          </div>
         </div>
         <div className="slider-area">
           <LeftOutlined
@@ -120,8 +125,10 @@ function Home() {
       <Carousel
         ref={carouselRef}
         className="shop-slider-area"
+        centerPadding="35"
         slidesToShow={carouselViewPage()}
         draggable
+        centerMode={size < 590 ? true : false}
         dots={false}
       >
         <ShoppingCard />
@@ -130,11 +137,12 @@ function Home() {
         <ShoppingCard />
         <ShoppingCard />
       </Carousel>
+
       <div className="button-area">
         <Button title={t("viewAllProducts")} />
       </div>
       <hr style={{ margin: "50px 0px" }}></hr>
-      <GeneralTitle title={t("categoriesTitle")} />
+      {/* <GeneralTitle title={t("categoriesTitle")} />
       <h1 className="sales-title">{t("categories")}</h1>
       <div className="categories-area">
         <CategoriesCard path={"/images/cell.png"} name="Phones" />
@@ -144,7 +152,7 @@ function Home() {
         <CategoriesCard path={"/images/headphone.png"} name="HeadPhones" />
         <CategoriesCard path={"/images/game.png"} name="Gaming" />
       </div>
-      <hr style={{ margin: "50px 0px" }}></hr>
+      <hr style={{ margin: "50px 0px" }}></hr> */}
       <GeneralTitle title={t("featured")} />
       <h1 className="sales-title">{t("arrival")}</h1>
       <div className="arrival">
