@@ -60,3 +60,67 @@
     left: -20px;
     cursor: pointer;
 }
+
+.copun-area {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+@media only screen and (max-width:1050px) {
+
+
+    .sub-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .basket-area {
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .basket-grid:first-child {
+        display: none;
+    }
+
+    .basket-area {
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .copun-area .ant-input {
+        width: 100% !important;
+    }
+
+    .copun-area {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .basket-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .cart-total {
+        width: 100%;
+    }
+
+    .basket-area {
+        margin-bottom: 10px;
+    }
+
+
+
+}

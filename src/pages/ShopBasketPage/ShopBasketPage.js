@@ -11,9 +11,9 @@ function ShopBasketPage() {
     {
       id: 0,
       product: "LCD monitor",
-      price: "$500",
+      price: "$650",
       quantity: 1,
-      subTotal: "650",
+      subTotal: "$650",
       img: "/images/monitor.svg",
     },
     {
@@ -21,7 +21,7 @@ function ShopBasketPage() {
       product: "H1 Gamepad",
       price: "$500",
       quantity: 1,
-      subTotal: "650",
+      subTotal: "$500",
       img: "/images/gamepad.svg",
     },
   ];
@@ -51,7 +51,7 @@ function ShopBasketPage() {
       </div>
       <div className="sub-area">
         <div className="sub-content">
-          <div className="display-flex">
+          <div className="copun-area">
             <Input
               type="text"
               style={{ width: "140px", height: "40px" }}
