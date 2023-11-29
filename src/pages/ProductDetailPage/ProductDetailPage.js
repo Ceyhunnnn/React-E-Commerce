@@ -3,7 +3,7 @@ import "./ProductDetailPage.css";
 import Button from "components/Button";
 import { Heart, Loop, Truck } from "components/Icons/Icons";
 import { useTranslation } from "react-i18next";
-import { Divider } from "antd";
+import { Carousel, Divider } from "antd";
 import GeneralTitle from "components/GeneralTitle";
 import ShoppingCard from "components/ShoppingCard";
 function ProductDetailPage() {
@@ -53,8 +53,21 @@ function ProductDetailPage() {
   };
   return (
     <>
-      <div className="sized-box">
+      <div className="prod-area">
         <div className="product-grid">
+          <div className="product-carousel">
+            <Carousel autoplay draggable slidesToShow={1} dots>
+              {imgList.map((img) => (
+                <img
+                  className="img-car"
+                  key={img.id}
+                  src={img.url}
+                  alt="product-detail"
+                  onClick={() => setSelectedImg(img.url)}
+                />
+              ))}
+            </Carousel>
+          </div>
           <div className="product-images">
             {imgList.map((img) => (
               <img
@@ -68,6 +81,7 @@ function ProductDetailPage() {
           <div className="product-image">
             <img src={selectedImg} alt="product-detail" />
           </div>
+
           <div className="product-detail">
             <h1 className="font-24">Havic HV G-92 Gamepad</h1>
             <p className="font-24">$192.00</p>

@@ -34,7 +34,6 @@
 .product-image img {
     width: 100%;
     height: 100%;
-
 }
 
 .product-detail {
@@ -127,4 +126,114 @@
     place-content: center;
     place-items: center;
     margin-bottom: 80px;
+}
+
+.product-carousel {
+    display: none;
+}
+
+.prod-area {
+    margin: 100px 0px;
+}
+
+
+@media only screen and (max-width:1200px) {
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 10px;
+    }
+
+    .product-images {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .product-image {
+        grid-area: 1 / 2 / 2 / 4;
+    }
+
+    .product-detail {
+        grid-area: 2 / 1 / 3 / 4;
+    }
+
+    .product-images img {
+        background-color: #F5F5F5;
+        width: 100%;
+    }
+
+    .related-area {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media only screen and (max-width:850px) {
+
+    .related-area {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width:560px) {
+
+    .related-area {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width:650px) {
+    .prod-area {
+        margin: 0px;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: min-content;
+    }
+
+    .product-carousel {
+        grid-area: 1 / 1 / 2 / 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        width: 300px;
+        height: fit-content;
+        background-color: #F5F5F5;
+    }
+
+    .product-detail {
+        grid-area: 2 / 1 / 3 / 2;
+        margin-top: 20px;
+    }
+
+    .product-images,
+    .product-image {
+        display: none;
+    }
+
+    .product-carousel .slick-dots li button {
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        background: black;
+    }
+
+    .product-carousel .slick-dots li.slick-active button {
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        background: red;
+    }
+
+    .event-area {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
