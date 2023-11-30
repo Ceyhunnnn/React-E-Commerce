@@ -1,9 +1,9 @@
 import React from "react";
-import { Form, Input, notification } from "antd";
+import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
-import apiFunction from "services/Api";
+import { registerAction } from "modules/signUp";
 function Register({ setLoading }) {
   const { t } = useTranslation();
   const registerForm = useForm();
@@ -52,20 +52,10 @@ function Register({ setLoading }) {
       .validateFields()
       .then(async (values) => {
         setLoading(true);
-        apiFunction("register", { body: values, type: "post" })
-          .then((res) => {
-            if (res) {
-              notification.success({
-                message: "Successfull!",
-                description: res.data.message,
-              });
-              registerForm.resetFields();
-              setLoading(false);
-            }
-          })
-          .catch((err) => null);
+        await registerAction(values, registerForm);
+        setLoading(false);
       })
-      .catch((err) => null);
+      .catch((err) => setLoading(false));
   };
   return (
     <>

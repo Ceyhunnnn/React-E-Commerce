@@ -3,7 +3,7 @@ import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
-import apiFunction from "services/Api";
+import { loginAction } from "modules/signUp";
 function Login({ setLoading }) {
   const { t } = useTranslation();
   const loginForm = useForm();
@@ -40,16 +40,10 @@ function Login({ setLoading }) {
       .validateFields()
       .then(async (values) => {
         setLoading(true);
-        await apiFunction("login", {
-          body: values,
-          type: "post",
-        }).then((res) => {
-          if (res) {
-          }
-          setLoading(false);
-        });
+        await loginAction(values);
+        setLoading(false);
       })
-      .catch((err) => null);
+      .catch(() => setLoading(false));
   };
   return (
     <>
