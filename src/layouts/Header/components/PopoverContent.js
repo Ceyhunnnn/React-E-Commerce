@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import { UserOutlined, StarOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import PathConstants from "PathConstants";
+import { logout } from "modules/signUp";
 function PopoverContent() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const logout = () => {};
+
   const menuItems = [
     {
       id: 0,

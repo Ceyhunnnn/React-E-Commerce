@@ -18,31 +18,37 @@ import {
 } from "@ant-design/icons";
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
+import TokenService from "services/TokenService";
 
 function Header() {
   const [size] = useScreenSize();
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
+  const isAuth = TokenService.getToken();
   const headerMenu = [
     {
       id: 0,
       title: t("header.home"),
       link: PathConstants.HOME,
+      hidden: false,
     },
     {
       id: 1,
       title: t("header.about"),
       link: PathConstants.ABOUT,
+      hidden: false,
     },
     {
       id: 2,
       title: t("header.contact"),
       link: PathConstants.CONTACT,
+      hidden: false,
     },
     {
       id: 3,
       title: t("header.signup"),
       link: PathConstants.SINGUP,
+      hidden: isAuth ? true : false,
     },
   ];
   const selectOptions = [
@@ -80,6 +86,7 @@ function Header() {
                   <ul key={header.id}>
                     <li>
                       <NavLink
+                        hidden={header.hidden}
                         onClick={() => setIsOpen(false)}
                         className={({ isActive }) =>
                           isActive ? "is-active" : "is-not-active"
@@ -99,18 +106,22 @@ function Header() {
                   onChange={() => setIsOpen(false)}
                   defaultValue={Config.lang.default}
                 />
-                <HeartOutlined style={{ fontSize: "20px" }} />
-                <Link to={PathConstants.SHOP_BASKET}>
-                  <ShoppingCartOutlined style={{ fontSize: "20px" }} />
-                </Link>
-                <Popover
-                  placement="bottomRight"
-                  title={Config.app.title}
-                  content={<PopoverContent />}
-                  arrow={false}
-                >
-                  <UserOutlined style={{ fontSize: "20px" }} />
-                </Popover>
+                {isAuth && (
+                  <>
+                    <HeartOutlined style={{ fontSize: "20px" }} />
+                    <Link to={PathConstants.SHOP_BASKET}>
+                      <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                    </Link>
+                    <Popover
+                      placement="bottomRight"
+                      title={Config.app.title}
+                      content={<PopoverContent />}
+                      arrow={false}
+                    >
+                      <UserOutlined style={{ fontSize: "20px" }} />
+                    </Popover>
+                  </>
+                )}
               </div>
             </div>
           </div>
