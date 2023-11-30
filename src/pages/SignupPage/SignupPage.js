@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignupPage.css";
 import RegisterTabbar from "./RegisterTabbar";
-import { Tabs } from "antd";
+import { Spin, Tabs } from "antd";
 import LoginTabbar from "./LoginTabbar";
 
 function SignUp() {
+  const [loading, setLoading] = useState(false);
   const tabItems = [
     {
       key: "1",
       label: "Login",
-      children: <LoginTabbar />,
+      children: <LoginTabbar setLoading={setLoading} />,
     },
     {
       key: "2",
       label: "Register",
-      children: <RegisterTabbar />,
+      children: <RegisterTabbar setLoading={setLoading} />,
     },
   ];
   return (
@@ -26,7 +27,9 @@ function SignUp() {
           alt="SignUpPhoto"
         />
         <div className="signup">
-          <Tabs centered defaultActiveKey="1" items={tabItems} />
+          <Spin spinning={loading}>
+            <Tabs centered defaultActiveKey="1" items={tabItems} />
+          </Spin>
         </div>
       </div>
     </>

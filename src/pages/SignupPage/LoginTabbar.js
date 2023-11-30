@@ -4,7 +4,7 @@ import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
 import apiFunction from "services/Api";
-function Login() {
+function Login({ setLoading }) {
   const { t } = useTranslation();
   const loginForm = useForm();
   const formItems = [
@@ -39,12 +39,14 @@ function Login() {
     loginForm
       .validateFields()
       .then(async (values) => {
-        apiFunction("login", {
+        setLoading(true);
+        await apiFunction("login", {
           body: values,
           type: "post",
         }).then((res) => {
           if (res) {
           }
+          setLoading(false);
         });
       })
       .catch((err) => null);

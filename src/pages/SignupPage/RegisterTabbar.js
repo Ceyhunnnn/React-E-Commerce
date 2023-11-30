@@ -4,7 +4,7 @@ import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
 import apiFunction from "services/Api";
-function Register() {
+function Register({ setLoading }) {
   const { t } = useTranslation();
   const registerForm = useForm();
   const formItems = [
@@ -51,6 +51,7 @@ function Register() {
     registerForm
       .validateFields()
       .then(async (values) => {
+        setLoading(true);
         apiFunction("register", { body: values, type: "post" })
           .then((res) => {
             if (res) {
@@ -59,6 +60,7 @@ function Register() {
                 description: res.data.message,
               });
               registerForm.resetFields();
+              setLoading(false);
             }
           })
           .catch((err) => null);
