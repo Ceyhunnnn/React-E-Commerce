@@ -5,7 +5,10 @@ import { Divider, Form, Input, Upload } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 function AccountPage() {
+  const user = useSelector((state) => state.user.value);
   const { t } = useTranslation();
   const form = useForm();
   const formItems = [
@@ -99,6 +102,13 @@ function AccountPage() {
       </div>
     </div>
   );
+  useEffect(() => {
+    form.setFieldsValue({
+      name: user?.name,
+      mail: user?.email,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
   return (
     <>
       <div className="form-area">
@@ -125,44 +135,46 @@ function AccountPage() {
             )}
           </Upload>
         </div>
-        <Form
-          form={form}
-          className="form-item-area"
-          name="personForm"
-          layout="vertical"
-          style={{
-            maxWidth: 800,
-          }}
-        >
-          <div className="form-grid">
-            {formItems.map((input) => (
-              <Form.Item
-                key={input.id}
-                label={input.label}
-                name={input.name}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input
-                  required
-                  disabled={input.disabled}
-                  placeholder={input.placeholder}
-                  type={input.type}
-                />
-              </Form.Item>
-            ))}
-          </div>
-          <div className="button-area-end">
-            <Button
-              title={t("saveChanges")}
-              height="40px"
-              onClick={submitPersonForm}
-            />
-          </div>
-        </Form>
+        {user && (
+          <Form
+            form={form}
+            className="form-item-area"
+            name="personForm"
+            layout="vertical"
+            style={{
+              maxWidth: 800,
+            }}
+          >
+            <div className="form-grid">
+              {formItems.map((input) => (
+                <Form.Item
+                  key={input.id}
+                  label={input.label}
+                  name={input.name}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Input
+                    required
+                    disabled={input.disabled}
+                    placeholder={input.placeholder}
+                    type={input.type}
+                  />
+                </Form.Item>
+              ))}
+            </div>
+            <div className="button-area-end">
+              <Button
+                title={t("saveChanges")}
+                height="40px"
+                onClick={submitPersonForm}
+              />
+            </div>
+          </Form>
+        )}
       </div>
     </>
   );
