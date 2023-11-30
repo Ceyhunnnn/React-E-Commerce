@@ -18,13 +18,13 @@ import {
 } from "@ant-design/icons";
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
-import TokenService from "services/TokenService";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [size] = useScreenSize();
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
-  const isAuth = TokenService.getToken();
+  const user = useSelector((state) => state.user.value);
   const headerMenu = [
     {
       id: 0,
@@ -48,7 +48,7 @@ function Header() {
       id: 3,
       title: t("header.signup"),
       link: PathConstants.SINGUP,
-      hidden: isAuth ? true : false,
+      hidden: user ? true : false,
     },
   ];
   const selectOptions = [
@@ -106,7 +106,7 @@ function Header() {
                   onChange={() => setIsOpen(false)}
                   defaultValue={Config.lang.default}
                 />
-                {isAuth && (
+                {user && (
                   <>
                     <HeartOutlined style={{ fontSize: "20px" }} />
                     <Link to={PathConstants.SHOP_BASKET}>
