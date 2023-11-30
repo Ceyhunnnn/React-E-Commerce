@@ -1,7 +1,7 @@
 import Container from "components/Container";
-import Footer from "layouts/Footer";
-import Header from "layouts/Header";
-import TopHeader from "layouts/TopHeader";
+import Footer from "layouts/Components/Footer";
+import Header from "layouts/Components/Header";
+import TopHeader from "layouts/Components/TopHeader";
 import React from "react";
 import { Outlet } from "react-router-dom";
 

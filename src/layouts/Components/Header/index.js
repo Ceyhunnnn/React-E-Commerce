@@ -8,7 +8,7 @@ import {
   Popover,
   Select,
 } from "antd";
-import Config from "./../../config";
+import Config from "./../../../config";
 import PathConstants from "PathConstants";
 import PopoverContent from "./components/PopoverContent";
 import {
