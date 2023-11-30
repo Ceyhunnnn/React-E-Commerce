@@ -3,6 +3,7 @@ import { Form, Input } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
+import apiFunction from "services/Api";
 function Login() {
   const { t } = useTranslation();
   const loginForm = useForm();
@@ -13,6 +14,13 @@ function Login() {
       label: t("form.email"),
       placeholder: t("form.email"),
       type: "text",
+      rules: [
+        {
+          required: true,
+          type: "email",
+          message: "The input is not valid E-mail!",
+        },
+      ],
     },
     {
       id: 1,
@@ -20,8 +28,27 @@ function Login() {
       label: t("form.password"),
       placeholder: t("form.password"),
       type: "password",
+      rules: [
+        {
+          required: true,
+        },
+      ],
     },
   ];
+  const login = () => {
+    loginForm
+      .validateFields()
+      .then(async (values) => {
+        apiFunction("login", {
+          body: values,
+          type: "post",
+        }).then((res) => {
+          if (res) {
+          }
+        });
+      })
+      .catch((err) => null);
+  };
   return (
     <>
       <h1 className="font-36">{t("loginTitle")}</h1>
@@ -39,18 +66,19 @@ function Login() {
             key={input.id}
             name={input.name}
             label={input.label}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={input.rules}
           >
             <Input placeholder={input.placeholder} type={input.type} />
           </Form.Item>
         ))}
       </Form>
       <div className="flex-area">
-        <Button title={t("form.titles.login")} width={200} height={45} />
+        <Button
+          title={t("form.titles.login")}
+          width={200}
+          height={45}
+          onClick={login}
+        />
       </div>
     </>
   );

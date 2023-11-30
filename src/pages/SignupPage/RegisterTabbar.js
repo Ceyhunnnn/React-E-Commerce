@@ -1,8 +1,9 @@
 import React from "react";
-import { Form, Input } from "antd";
+import { Form, Input, notification } from "antd";
 import Button from "components/Button";
 import useForm from "hooks/useForm";
 import { useTranslation } from "react-i18next";
+import apiFunction from "services/Api";
 function Register() {
   const { t } = useTranslation();
   const registerForm = useForm();
@@ -13,6 +14,11 @@ function Register() {
       label: t("form.name"),
       placeholder: t("form.name"),
       type: "text",
+      rules: [
+        {
+          required: true,
+        },
+      ],
     },
     {
       id: 1,
@@ -20,6 +26,13 @@ function Register() {
       label: t("form.email"),
       placeholder: t("form.email"),
       type: "text",
+      rules: [
+        {
+          required: true,
+          type: "email",
+          message: "The input is not valid E-mail!",
+        },
+      ],
     },
     {
       id: 2,
@@ -27,8 +40,31 @@ function Register() {
       label: t("form.password"),
       placeholder: t("form.password"),
       type: "password",
+      rules: [
+        {
+          required: true,
+        },
+      ],
     },
   ];
+  const register = () => {
+    registerForm
+      .validateFields()
+      .then(async (values) => {
+        apiFunction("register", { body: values, type: "post" })
+          .then((res) => {
+            if (res) {
+              notification.success({
+                message: "Successfull!",
+                description: res.data.message,
+              });
+              registerForm.resetFields();
+            }
+          })
+          .catch((err) => null);
+      })
+      .catch((err) => null);
+  };
   return (
     <>
       <h1 className="font-36">{t("registerTitle")}</h1>
@@ -46,18 +82,19 @@ function Register() {
             key={input.id}
             name={input.name}
             label={input.label}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={input.rules}
           >
             <Input placeholder={input.placeholder} type={input.type} />
           </Form.Item>
         ))}
       </Form>
       <div className="flex-area">
-        <Button title={t("form.titles.register")} width={200} height={45} />
+        <Button
+          title={t("form.titles.register")}
+          width={200}
+          height={45}
+          onClick={register}
+        />
       </div>
     </>
   );
