@@ -32,6 +32,7 @@ function AccountPage() {
       label: t("form.email"),
       placeholder: t("form.email"),
       type: "text",
+      disabled: true,
     },
     {
       id: 3,
