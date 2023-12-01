@@ -1,17 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Loading from "components/Loading/Loading";
-import { setUserData } from "features/user/userSlice";
+import { getUserData } from "modules/signUp";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useRoutes } from "react-router-dom";
 import routes from "routes";
-import apiFunction from "services/Api";
 import TokenService from "services/TokenService";
 import PageTitle from "utils/PageTitle";
 
 function App() {
   const isAuth = TokenService.getToken();
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -20,12 +17,8 @@ function App() {
   useEffect(() => {
     if (isAuth) {
       setLoading(true);
-      apiFunction("me", { body: "", type: "get" }).then((res) => {
-        if (res.status === 200) {
-          dispatch(setUserData(res.data.data));
-        }
-        setLoading(false);
-      });
+      getUserData();
+      setLoading(false);
     }
   }, [isAuth]);
   if (loading) {

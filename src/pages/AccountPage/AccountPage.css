@@ -54,3 +54,15 @@
         padding: 10px 0px;
     }
 }
+
+.upload-photo {
+    border-radius: 150px;
+    position: relative;
+    object-fit: cover;
+}
+
+.delete-button {
+    position: absolute;
+    font-size: 20px;
+    color: red;
+}

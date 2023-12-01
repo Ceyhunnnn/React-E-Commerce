@@ -1,11 +1,11 @@
 import PathConstants from "PathConstants";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import TokenService from "services/TokenService";
 
 function PrivateLayout({ element }) {
-  const isAuth = TokenService.getToken();
-  return !isAuth ? element : <Navigate to={PathConstants.HOME} />;
+  const user = useSelector((state) => state.user.value);
+  return !user ? element : <Navigate to={PathConstants.HOME} />;
 }
 
 export default PrivateLayout;
