@@ -7,46 +7,46 @@ import { useTranslation } from "react-i18next";
 
 function About() {
   const { t } = useTranslation();
-  const aboutPersonInfo = [
-    {
-      id: 0,
-      name: "Tom Cruise",
-      department: "Founder & Chairman",
-      imgPath: "/images/aboutPerson1.png",
-    },
-    {
-      id: 1,
-      name: "Emma Watson",
-      department: "Managing Director",
-      imgPath: "/images/aboutPerson2.png",
-    },
-    {
-      id: 2,
-      name: "Will Smith",
-      department: "Product Designer",
-      imgPath: "/images/aboutPerson3.png",
-    },
-  ];
-  const services = [
-    {
-      id: 0,
-      text: "FREE AND FAST DELIVERY",
-      desc: "Free delivery for all orders over $140",
-      img: "/images/services.png",
-    },
-    {
-      id: 1,
-      text: "24/7 CUSTOMER SERVICE",
-      desc: "Friendly 24/7 customer support",
-      img: "/images/servicesPhone.png",
-    },
-    {
-      id: 2,
-      text: "MONEY BACK GUARANTEE",
-      desc: "We reurn money within 30 days",
-      img: "/images/servicesSafe.png",
-    },
-  ];
+  // const aboutPersonInfo = [
+  //   {
+  //     id: 0,
+  //     name: "Tom Cruise",
+  //     department: "Founder & Chairman",
+  //     imgPath: "/images/aboutPerson1.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Emma Watson",
+  //     department: "Managing Director",
+  //     imgPath: "/images/aboutPerson2.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Will Smith",
+  //     department: "Product Designer",
+  //     imgPath: "/images/aboutPerson3.png",
+  //   },
+  // ];
+  // const services = [
+  //   {
+  //     id: 0,
+  //     text: "FREE AND FAST DELIVERY",
+  //     desc: "Free delivery for all orders over $140",
+  //     img: "/images/services.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     text: "24/7 CUSTOMER SERVICE",
+  //     desc: "Friendly 24/7 customer support",
+  //     img: "/images/servicesPhone.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     text: "MONEY BACK GUARANTEE",
+  //     desc: "We reurn money within 30 days",
+  //     img: "/images/servicesSafe.png",
+  //   },
+  // ];
   return (
     <>
       <div className="about-area">
