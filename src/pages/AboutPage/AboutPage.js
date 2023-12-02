@@ -3,7 +3,7 @@ import "./AboutPage.css";
 import { useTranslation } from "react-i18next";
 // import AboutCard from "./components/Card";
 // import AboutCard from "./../AboutPage/components/Card";
-import ServiceCard from "./components/ServiceCard";
+// import ServiceCard from "./components/ServiceCard";
 
 function About() {
   const { t } = useTranslation();
@@ -74,7 +74,7 @@ function About() {
         ))}
       </div> */}
       <hr></hr>
-      <div className="about-card-area sized-box">
+      {/* <div className="about-card-area sized-box">
         {services.map((service) => (
           <ServiceCard
             key={service.id}
@@ -83,7 +83,7 @@ function About() {
             desc={service.desc}
           />
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
