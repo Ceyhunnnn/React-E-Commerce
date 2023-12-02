@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AccountPage.css";
 import { useTranslation } from "react-i18next";
-import { Divider, Form, Input, Spin, notification } from "antd";
+import { Divider, Form, Input, Popconfirm, Spin, notification } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -149,7 +149,7 @@ function AccountPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  const submitPersonForm = () => {
+  const updateUserData = () => {
     setLoading(true);
     form
       .validateFields()
@@ -186,10 +186,15 @@ function AccountPage() {
                 alt="profilePhoto"
                 className="upload-photo"
               />
-              <DeleteOutlined
-                className="delete-button"
-                onClick={deleteProfilPhoto}
-              />
+              <Popconfirm
+                title="Delete Photo"
+                description="Are you sure to delete this photo?"
+                onConfirm={deleteProfilPhoto}
+                okText="Yes"
+                cancelText="No"
+              >
+                <DeleteOutlined className="delete-button" />
+              </Popconfirm>
             </div>
           ) : (
             <div className="upload-area">
@@ -233,11 +238,15 @@ function AccountPage() {
               ))}
             </div>
             <div className="button-area-end">
-              <Button
-                title={t("saveChanges")}
-                height="40px"
-                onClick={submitPersonForm}
-              />
+              <Popconfirm
+                title="Update Profile"
+                description="Are you sure to update this form"
+                onConfirm={updateUserData}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button title={t("saveChanges")} height="40px" />
+              </Popconfirm>
             </div>
           </Form>
         )}
