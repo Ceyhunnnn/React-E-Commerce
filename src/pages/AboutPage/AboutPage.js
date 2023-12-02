@@ -2,7 +2,7 @@ import React from "react";
 import "./AboutPage.css";
 import { useTranslation } from "react-i18next";
 // import AboutCard from "./components/Card";
-import AboutCard from "./../AboutPage/components/Card";
+// import AboutCard from "./../AboutPage/components/Card";
 import ServiceCard from "./components/ServiceCard";
 
 function About() {
@@ -63,7 +63,7 @@ function About() {
           />
         </div>
       </div>
-      <div className="about-card-area sized-box">
+      {/* <div className="about-card-area sized-box">
         {aboutPersonInfo.map((person) => (
           <AboutCard
             key={person.id}
@@ -72,7 +72,7 @@ function About() {
             path={person.imgPath}
           />
         ))}
-      </div>
+      </div> */}
       <hr></hr>
       <div className="about-card-area sized-box">
         {services.map((service) => (
