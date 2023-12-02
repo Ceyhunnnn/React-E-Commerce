@@ -67,7 +67,6 @@ function About() {
           <AboutCard
             key={person.id}
             name={person.name}
-            unique={person.id}
             department={person.department}
             path={person.imgPath}
           />
