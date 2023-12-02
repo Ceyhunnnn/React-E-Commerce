@@ -59,10 +59,19 @@
     border-radius: 150px;
     position: relative;
     object-fit: cover;
+    width: 150px;
+    height: 150px;
 }
 
 .delete-button {
     position: absolute;
     font-size: 20px;
     color: red;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-button:hover {
+    border: 1px solid #ccc;
+    border-radius: 50px;
 }

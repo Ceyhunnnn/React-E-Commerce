@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./AccountPage.css";
 import { useTranslation } from "react-i18next";
-import { Divider, Form, Input, Upload, notification } from "antd";
+import { Divider, Form, Input, notification } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
-import {
-  LoadingOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import apiFunction from "services/Api";
 import { getUserData } from "modules/signUp";
+import axios from "axios";
+import Loading from "components/Loading/Loading";
 
 function AccountPage() {
   const user = useSelector((state) => state.user.value);
@@ -90,39 +88,51 @@ function AccountPage() {
       rules: [],
     },
   ];
-  const [imageUrl, setImageUrl] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const getBase64 = (img, callback) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
-    reader.readAsDataURL(img);
-  };
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        console.log(info.file);
-        setImageUrl(url);
+
+  const uploadProfilePHoto = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("profile", file);
+    await axios
+      .post(
+        `${process.env.REACT_APP_API_URL}profilePhoto/${user?._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          getUserData();
+          notification.success({
+            message: "Successfull",
+            description: res.data.message,
+          });
+        }
       });
-    }
   };
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </div>
-  );
+  const deleteProfilPhoto = () => {
+    const regexPattern = /\/profile\/(profile_\d+\.(jpeg|png))/;
+    const match = user.image.match(regexPattern);
+    const dynamicPart = match[1];
+    const body = {
+      image: dynamicPart,
+    };
+    apiFunction(`profilePhoto/${user._id}`, { body, type: "delete" }).then(
+      async (res) => {
+        if (res.status === 200) {
+          await getUserData();
+          notification.success({
+            message: "Successfull",
+            description: res.data.message,
+          });
+        }
+      }
+    );
+  };
+
   useEffect(() => {
     form.setFieldsValue({
       name: user?.name,
@@ -133,10 +143,10 @@ function AccountPage() {
   }, [user]);
 
   const submitPersonForm = () => {
-    form.validateFields().then((val) => {
+    form.validateFields().then((values) => {
       apiFunction(`/upload-profile/${user._id}`, {
         type: "patch",
-        body: val,
+        body: values,
       }).then(async (res) => {
         if (res.status === 200) {
           await getUserData();
@@ -148,41 +158,32 @@ function AccountPage() {
       });
     });
   };
+  if (!user) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="form-area">
         <h1 className="edit-title">Edit Your Profile</h1>
         <Divider />
         <div className="photo-area">
-          {imageUrl ? (
+          {user?.image ? (
             <div>
               <img
-                src={imageUrl}
-                alt="avatar"
+                src={user?.image}
+                alt="profilePhoto"
                 className="upload-photo"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                }}
               />
               <DeleteOutlined
-                onClick={() => setImageUrl(null)}
                 className="delete-button"
+                onClick={deleteProfilPhoto}
               />
             </div>
           ) : (
-            <Upload
-              accept="image/png, image/jpeg"
-              name="avatar"
-              listType="picture-circle"
-              showUploadList={false}
-              onChange={handleChange}
-              action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-            >
-              {uploadButton}
-            </Upload>
+            <input accept="image/*" type="file" onChange={uploadProfilePHoto} />
           )}
         </div>
+
         {user && (
           <Form
             form={form}

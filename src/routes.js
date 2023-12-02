@@ -21,6 +21,7 @@ const ProductDetailPage = lazy(() =>
 const PrivateLayout = lazy(() =>
   import("./layouts/PrivateLayout/PrivateLayout")
 );
+const PublicLayout = lazy(() => import("./layouts/PublicLayout/PublicLayout"));
 const routes = [
   {
     path: PathConstants.HOME,
@@ -40,11 +41,11 @@ const routes = [
       },
       {
         path: PathConstants.SINGUP,
-        element: <PrivateLayout element={<SignupPage />} />,
+        element: <PublicLayout element={<SignupPage />} />,
       },
       {
         path: PathConstants.ACCOUNT,
-        element: <AccountPage />,
+        element: <PrivateLayout element={<AccountPage />} />,
       },
       {
         path: PathConstants.ERROR,
