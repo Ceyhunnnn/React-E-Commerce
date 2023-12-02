@@ -11,6 +11,7 @@ import apiFunction from "services/Api";
 import { getUserData } from "modules/signUp";
 import axios from "axios";
 import Loading from "components/Loading/Loading";
+import { Upload } from "components/Icons/Icons";
 
 function AccountPage() {
   const user = useSelector((state) => state.user.value);
@@ -180,7 +181,16 @@ function AccountPage() {
               />
             </div>
           ) : (
-            <input accept="image/*" type="file" onChange={uploadProfilePHoto} />
+            <div className="upload-area">
+              <Upload className="upload-button" />
+              <p className="upload-title">Upload your profile photo</p>
+              <input
+                accept="image/*"
+                type="file"
+                className="upload-input"
+                onChange={uploadProfilePHoto}
+              />
+            </div>
           )}
         </div>
 

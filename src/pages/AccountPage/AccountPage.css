@@ -75,3 +75,31 @@
     border: 1px solid #ccc;
     border-radius: 50px;
 }
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.upload-input {
+    position: absolute;
+    height: 100px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-button {
+    font-size: 100px;
+    position: relative;
+    width: 250px;
+}
+
+.upload-title {
+    padding: 5px 0px;
+    font-size: 14px;
+}
