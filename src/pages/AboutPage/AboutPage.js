@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutPage.css";
 import { useTranslation } from "react-i18next";
-import AboutCard from "./components/AboutCard";
+import AboutCard from "./components/Aboutcard";
 import ServiceCard from "./components/ServiceCard";
 
 function About() {
