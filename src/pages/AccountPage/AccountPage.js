@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AccountPage.css";
 import { useTranslation } from "react-i18next";
-import { Divider, Form, Input, notification } from "antd";
+import { Divider, Form, Input, Spin, notification } from "antd";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -14,6 +14,7 @@ import Loading from "components/Loading/Loading";
 import { Upload } from "components/Icons/Icons";
 
 function AccountPage() {
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user.value);
   const { t } = useTranslation();
   const form = useForm();
@@ -91,6 +92,7 @@ function AccountPage() {
   ];
 
   const uploadProfilePHoto = async (event) => {
+    setLoading(true);
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("profile", file);
@@ -111,27 +113,31 @@ function AccountPage() {
             message: "Successfull",
             description: res.data.message,
           });
+          setLoading(false);
         }
       });
   };
-  const deleteProfilPhoto = () => {
+  const deleteProfilPhoto = async () => {
     const regexPattern = /\/profile\/(profile_\d+\.(jpeg|png))/;
     const match = user.image.match(regexPattern);
     const dynamicPart = match[1];
     const body = {
       image: dynamicPart,
     };
-    apiFunction(`profilePhoto/${user._id}`, { body, type: "delete" }).then(
-      async (res) => {
-        if (res.status === 200) {
-          await getUserData();
-          notification.success({
-            message: "Successfull",
-            description: res.data.message,
-          });
-        }
+    setLoading(true);
+    await apiFunction(`profilePhoto/${user._id}`, {
+      body,
+      type: "delete",
+    }).then(async (res) => {
+      if (res.status === 200) {
+        await getUserData();
+        notification.success({
+          message: "Successfull",
+          description: res.data.message,
+        });
+        setLoading(false);
       }
-    );
+    });
   };
 
   useEffect(() => {
@@ -144,26 +150,31 @@ function AccountPage() {
   }, [user]);
 
   const submitPersonForm = () => {
-    form.validateFields().then((values) => {
-      apiFunction(`/upload-profile/${user._id}`, {
-        type: "patch",
-        body: values,
-      }).then(async (res) => {
-        if (res.status === 200) {
-          await getUserData();
-          notification.success({
-            message: "Successfull",
-            description: res.data.message,
-          });
-        }
-      });
-    });
+    setLoading(true);
+    form
+      .validateFields()
+      .then((values) => {
+        apiFunction(`/upload-profile/${user._id}`, {
+          type: "patch",
+          body: values,
+        }).then(async (res) => {
+          if (res.status === 200) {
+            await getUserData();
+            notification.success({
+              message: "Successfull",
+              description: res.data.message,
+            });
+            setLoading(false);
+          }
+        });
+      })
+      .catch(() => setLoading(false));
   };
   if (!user) {
     return <Loading />;
   }
   return (
-    <>
+    <Spin spinning={loading}>
       <div className="form-area">
         <h1 className="edit-title">Edit Your Profile</h1>
         <Divider />
@@ -231,7 +242,7 @@ function AccountPage() {
           </Form>
         )}
       </div>
-    </>
+    </Spin>
   );
 }
 
