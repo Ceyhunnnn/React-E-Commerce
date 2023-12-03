@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ContactPage.css";
 import { Phone, CustomMail } from "components/Icons/Icons";
-import { Divider, Form, Input } from "antd";
+import { Divider, Form, Input, Spin, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
+import apiFunction from "services/Api";
 function Contact() {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const contactForm = useForm();
   const formItems = [
     {
@@ -15,13 +17,25 @@ function Contact() {
       label: t("form.name"),
       placeholder: t("form.name"),
       type: "text",
+      rules: [
+        {
+          required: true,
+        },
+      ],
     },
     {
       id: 1,
-      name: "mail",
+      name: "emailAddress",
       label: t("form.email"),
       placeholder: t("form.email"),
       type: "text",
+      rules: [
+        {
+          required: true,
+          type: "email",
+          message: "The input is not valid E-mail!",
+        },
+      ],
     },
     {
       id: 2,
@@ -29,10 +43,35 @@ function Contact() {
       label: t("form.phone"),
       placeholder: t("form.phone"),
       type: "text",
+      rules: [
+        {
+          required: true,
+        },
+      ],
     },
   ];
+  const sendMail = () => {
+    contactForm
+      .validateFields()
+      .then(async (val) => {
+        setLoading(true);
+        await apiFunction("contactMail", { type: "post", body: val }).then(
+          (res) => {
+            setLoading(false);
+            if (res.status === 200) {
+              notification.success({
+                message: "Successfull",
+                description: res.data.message,
+              });
+              contactForm.resetFields();
+            }
+          }
+        );
+      })
+      .catch((err) => setLoading(false));
+  };
   return (
-    <>
+    <Spin spinning={loading}>
       <div className="sized-box contact-area">
         <div className="contact-info custom-card">
           <div className="display-flex">
@@ -58,11 +97,7 @@ function Contact() {
                   key={input.id}
                   label={input.label}
                   name={input.name}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
+                  rules={input.rules}
                 >
                   <Input
                     required
@@ -91,12 +126,12 @@ function Contact() {
               />
             </Form.Item>
             <div className="contact-button-area">
-              <Button title={t("form.titles.sendMessage")} />
+              <Button title={t("form.titles.sendMessage")} onClick={sendMail} />
             </div>
           </Form>
         </div>
       </div>
-    </>
+    </Spin>
   );
 }
 

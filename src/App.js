@@ -11,15 +11,17 @@ import PageTitle from "utils/PageTitle";
 function App() {
   const isAuth = TokenService.getToken();
   const [loading, setLoading] = useState(false);
-
+  const getUser = async () => {
+    setLoading(true);
+    await getUserData();
+    setLoading(false);
+  };
   useEffect(() => {
     PageTitle();
   }, [window.location.pathname]);
-  useEffect(async () => {
+  useEffect(() => {
     if (isAuth) {
-      setLoading(true);
-      await getUserData();
-      setLoading(false);
+      getUser();
     }
   }, [isAuth]);
   if (loading) {
