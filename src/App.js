@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Loading from "components/Loading/Loading";
 import { getUserData } from "modules/signUp";
@@ -14,15 +15,15 @@ function App() {
   useEffect(() => {
     PageTitle();
   }, [window.location.pathname]);
-  useEffect(() => {
+  useEffect(async () => {
     if (isAuth) {
       setLoading(true);
-      getUserData();
+      await getUserData();
       setLoading(false);
     }
   }, [isAuth]);
   if (loading) {
-    <Loading />;
+    return <Loading />;
   }
   return useRoutes(routes);
 }
