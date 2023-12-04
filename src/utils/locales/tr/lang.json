@@ -1,1 +1,81 @@
-{}
+{
+    "topHeader": {
+        "summer": "Yüzme Kıyafetleri İçin Yaz İndirimi ve Ücretsiz Express Teslimat - %50 İNDİRİM!",
+        "shopNow": "Hemen Alışverişe Başla"
+    },
+    "header": {
+        "home": "Anasayfa",
+        "about": "Hakkımızda",
+        "contact": "İletişim",
+        "signup": "Üye Ol"
+    },
+    "exclusive": "Özel",
+    "mainMenuCategories": {
+        "fashion": "Kadın Modası",
+        "menFashion": "Erkek Modası",
+        "electronics": "Elektronik",
+        "home": "Ev & Yaşam Tarzı",
+        "medicine": "İlaç",
+        "sport": "Spor & Outdoor",
+        "baby": "Bebek & Oyuncak",
+        "pets": "Market & Pet",
+        "healthy": "Sağlık & Güzellik"
+    },
+    "sales": "Fırsat Ürünleri",
+    "viewAllProducts": "Tüm Ürünleri Görüntüle",
+    "categories": "Kategoriye Göre Göz At",
+    "categoriesTitle": "Kategoriler",
+    "arrival": "Yeni Gelenler",
+    "featured": "Öne Çıkanlar",
+    "todays": "Bugünkü",
+    "ourStory": "Hikayemiz",
+    "aboutDesc": "2015 yılında başlatılan Exclusive, Güney Asya'nın önde gelen çevrimiçi alışveriş pazarı olup, Bangladeş'te aktif bir varlığa sahiptir. Geniş bir özel pazarlama, veri ve hizmet çözümleri yelpazesi tarafından desteklenen Exclusive, 10.500 satıcı ve 300 markaya sahiptir ve bölge genelinde 3 milyon müşteriye hizmet vermektedir.",
+    "aboutDesc2": "Exclusive, çok hızlı bir şekilde büyüyen 1 milyondan fazla ürün sunmaktadır. Exclusive, tüketici ürünleri kategorilerinde çeşitli ürünler sunmaktadır.",
+    "callToUs": "Bize Ulaşın",
+    "avaliableText": "Haftanın 7 günü 24 saat hizmetinizdeyiz.",
+    "phone": "Telefon",
+    "writeToUs": "Bize Yazın",
+    "hoursText": "Formumuzu doldurun, size 24 saat içinde geri döneceğiz.",
+    "emails": "E-postalar",
+    "loginTitle": "Exclusive'e Giriş Yap",
+    "signupDesc": "Aşağıdaki bilgilerinizi girin",
+    "registerTitle": "Hesap Oluştur",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "couponCode": "Kupon Kodu",
+    "applyCoupon": "Kuponu Kullan",
+    "process": "Ödeme İşlemine Geç",
+    "form": {
+        "name": "Ad",
+        "lastName": "Soyad",
+        "email": "E-posta Adresi",
+        "password": "Şifre",
+        "message": "Mesajınız",
+        "phone": "Telefon",
+        "address": "Adres",
+        "titles": {
+            "login": "Giriş",
+            "register": "Hesap Oluştur",
+            "sendMessage": "Mesaj Gönder"
+        }
+    },
+    "languages": {
+        "en": "İngilizce",
+        "tr": "Türkçe"
+    },
+    "error": {
+        "title": "404 Bulunamadı",
+        "desc": "Ziyaret ettiğiniz sayfa bulunamadı. Ana sayfaya dönebilirsiniz.",
+        "buttonText": "Ana Sayfaya Dön"
+    },
+    "accountMenu": {
+        "account": "Hesabım",
+        "myReviews": "İncelemelerim",
+        "logout": "Çıkış Yap"
+    },
+    "events": {
+        "ok": "Tamam",
+        "cancel": "İptal"
+    },
+    "colors": "Renkler",
+    "buy": "Şimdi Satın Al"
+}

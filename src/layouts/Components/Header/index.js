@@ -19,6 +19,7 @@ import {
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
 import { useSelector } from "react-redux";
+import i18n from "utils/i18n";
 
 function Header() {
   const [size] = useScreenSize();
@@ -61,6 +62,9 @@ function Header() {
       label: t("languages.tr"),
     },
   ];
+  // const changeLanguage = async (val) => {
+  //   await i18n.changeLanguage(val);
+  // };
 
   return (
     <>
@@ -101,9 +105,13 @@ function Header() {
               </div>
               <div className="right-area">
                 <Select
+                  optionLabelProp="label"
                   style={isOpen && { height: "24px" }}
                   options={selectOptions}
-                  onChange={() => setIsOpen(false)}
+                  onChange={(val) => {
+                    // changeLanguage(val);
+                    setIsOpen(false);
+                  }}
                   defaultValue={Config.lang.default}
                 />
                 {user && (
