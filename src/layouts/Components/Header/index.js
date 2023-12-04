@@ -19,7 +19,6 @@ import {
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
 import { useSelector } from "react-redux";
-import i18n from "utils/i18n";
 
 function Header() {
   const [size] = useScreenSize();
