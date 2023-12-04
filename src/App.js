@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Loading from "components/Loading/Loading";
+import { getAllSettings } from "modules/settings";
 import { getUserData } from "modules/signUp";
 import { useEffect, useState } from "react";
 import { useRoutes } from "react-router-dom";
@@ -16,6 +17,14 @@ function App() {
     await getUserData();
     setLoading(false);
   };
+  const getSettings = async () => {
+    setLoading(true);
+    await getAllSettings();
+    setLoading(false);
+  };
+  useEffect(() => {
+    getSettings();
+  }, []);
   useEffect(() => {
     PageTitle();
   }, [window.location.pathname]);
@@ -24,6 +33,7 @@ function App() {
       getUser();
     }
   }, [isAuth]);
+
   if (loading) {
     return <Loading />;
   }

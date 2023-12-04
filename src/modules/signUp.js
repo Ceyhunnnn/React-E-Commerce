@@ -5,7 +5,6 @@ import apiFunction from "services/Api";
 import TokenService from "services/TokenService";
 import { store } from "./../store";
 export const registerAction = async (values, registerForm) => {
-  console.log("apiye istek");
   await apiFunction("register", { body: values, type: "post" }).then((res) => {
     if (res.data.success) {
       notification.success({

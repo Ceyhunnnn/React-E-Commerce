@@ -6,10 +6,13 @@ import { useTranslation } from "react-i18next";
 import useForm from "hooks/useForm";
 import Button from "components/Button";
 import apiFunction from "services/Api";
+import { useSelector } from "react-redux";
+import Loading from "components/Loading/Loading";
 function Contact() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const contactForm = useForm();
+  const settingData = useSelector((state) => state.setting.value);
   const formItems = [
     {
       id: 0,
@@ -70,6 +73,9 @@ function Contact() {
       })
       .catch((err) => setLoading(false));
   };
+  if (!settingData) {
+    return <Loading />;
+  }
   return (
     <Spin spinning={loading}>
       <div className="sized-box contact-area">
@@ -79,15 +85,21 @@ function Contact() {
             <p className="font-16">{t("callToUs")}</p>
           </div>
           <p className="font-14">{t("avaliableText")}</p>
-          <p className="font-14">{t("phone")}: +8801611112222</p>
+          <p className="font-14">
+            {t("phone")}: {settingData?.contact.phone}
+          </p>
           <Divider style={{ backgroundColor: "#ccc" }} />
           <div className="display-flex ">
             <CustomMail />
             <p className="font-16">{t("writeToUs")}</p>
           </div>
           <p className="font-14">{t("hoursText")}</p>
-          <p className="font-14">{t("emails")}: customer@exclusive.com</p>
-          <p className="font-14">{t("emails")}: support@exclusive.com</p>
+          <p className="font-14">
+            {t("emails")}: {settingData?.contact.email1}
+          </p>
+          <p className="font-14">
+            {t("emails")}: {settingData?.contact.email2}
+          </p>
         </div>
         <div className="contact-form custom-card">
           <Form form={contactForm} name="contactForm" layout="vertical">
