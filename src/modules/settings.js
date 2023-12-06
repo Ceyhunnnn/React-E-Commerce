@@ -3,7 +3,7 @@ import { store } from "./../store";
 import apiFunction from "services/Api";
 
 export const getAllSettings = async () => {
-  await apiFunction("settings", { type: "get" }).then((res) => {
+  await apiFunction("static", { type: "get" }).then((res) => {
     if (res.status === 200) {
       store.dispatch(setSettingsData(res.data.data));
     }
