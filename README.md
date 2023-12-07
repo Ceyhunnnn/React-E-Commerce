@@ -8,4 +8,4 @@
 <img src="https://github.com/Ceyhunnnn/React-E-Commerce/assets/70198902/8b0e7066-8865-473a-affb-d782d930eef1" />
 <img src="https://github.com/Ceyhunnnn/React-E-Commerce/assets/70198902/4429ae18-9500-48cd-921a-d7484ab1f228" />
 <img src="https://github.com/Ceyhunnnn/React-E-Commerce/assets/70198902/46cc25ee-9924-4cf9-ba0a-af6560f142ca" />
-
+<img src="https://github.com/Ceyhunnnn/React-E-Commerce/assets/70198902/a3744a36-a52c-4d77-829a-fa554f0ea85a" />
