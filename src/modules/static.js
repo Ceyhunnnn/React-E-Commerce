@@ -1,11 +1,11 @@
-import { setSettingsData } from "features/settings/settingsSlice";
+import { setStaticData } from "features/static/staticSlice";
 import { store } from "./../store";
 import apiFunction from "services/Api";
 
-export const getAllSettings = async () => {
+export const getStaticData = async () => {
   await apiFunction("static", { type: "get" }).then((res) => {
     if (res.status === 200) {
-      store.dispatch(setSettingsData(res.data.data));
+      store.dispatch(setStaticData(res?.data?.data));
     }
   });
 };
