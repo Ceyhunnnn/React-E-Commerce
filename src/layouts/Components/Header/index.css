@@ -117,5 +117,6 @@
         align-items: center;
         gap: 10px;
         z-index: 999;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 }
