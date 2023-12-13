@@ -1,12 +1,15 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import "./CategoryProductPage.css";
 import { useLocation } from "react-router-dom";
-import { Button, Select } from "antd";
+import { Select } from "antd";
 import ShoppingCard from "components/ShoppingCard";
+import apiFunction from "services/Api";
+import Loading from "components/Loading/Loading";
 
 function CategoryProductPage() {
+  const [data, setData] = useState();
   const path = useLocation();
-  console.log(JSON.stringify(path.pathname.split("/")[2]));
   const orderSelectList = [
     {
       value: "top seller",
@@ -22,10 +25,21 @@ function CategoryProductPage() {
     },
   ];
   const title = path.pathname.split("/")[2];
+  useEffect(() => {
+    const body = {
+      id: path.state.id,
+    };
+    apiFunction("getProducts", { body, type: "post" }).then((res) => {
+      if (res.data.success) setData(res.data.data);
+    });
+  }, []);
+  if (!data) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="category-title">
-        <h1>{title[0].toUpperCase() + title.slice(1)}</h1>
+        <h1>{path.state.title}</h1>
         <Select
           defaultValue="top-seller"
           style={{
@@ -35,19 +49,21 @@ function CategoryProductPage() {
         />
       </div>
       <div className="shopping-area">
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
+        {data?.map((prod) => (
+          <ShoppingCard
+            key={prod._id}
+            name={prod.name}
+            cover_photo={prod.cover_photo}
+            price={prod.price}
+          />
+        ))}
       </div>
-      <div className="flex-area" style={{ margin: "30px 0px" }}>
-        <Button>More</Button>
-      </div>
+      {data.length === 0 && (
+        <div className="progress-area">
+          <h2 className="font-36">{title} Products Loading</h2>
+          <img src="/images/progress.svg" alt="Progress" />
+        </div>
+      )}
     </>
   );
 }

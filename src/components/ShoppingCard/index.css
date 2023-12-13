@@ -85,3 +85,8 @@
     text-decoration: line-through;
     margin-left: 5px;
 }
+
+.cover-photo-size {
+    width: 190px;
+    height: 190px;
+}

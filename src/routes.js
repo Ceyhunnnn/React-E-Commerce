@@ -52,7 +52,7 @@ const routes = [
         element: <ErrorPage />,
       },
       {
-        path: PathConstants.CATEGORY_PRODUCT_PAGE + "/:id",
+        path: "/:id",
         element: <CategoryProductPage />,
       },
       {

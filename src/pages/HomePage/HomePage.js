@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./HomePage.css";
 import { useTranslation } from "react-i18next";
 import GeneralTitle from "components/GeneralTitle";
@@ -6,22 +6,25 @@ import CountdownTimer from "utils/CountdownTimer";
 import ShoppingCard from "components/ShoppingCard";
 import { Carousel } from "antd";
 import Button from "components/Button";
-// import CategoriesCard from "components/CategoriesCard";
 import { useScreenSize } from "hooks/useScreenSize";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import PathConstants from "PathConstants";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import apiFunction from "services/Api";
+import Loading from "components/Loading/Loading";
+import { setDiscountData } from "features/discountProducts/discountSlice";
 
 function Home() {
-  const categories2 = useSelector((state) => state.category.value);
+  const dispatch = useDispatch();
+  const discountProduct = useSelector((state) => state.discount.value);
+  const categories = useSelector((state) => state.category.value);
   const [size] = useScreenSize();
   const carouselRef = useRef();
   const { t } = useTranslation();
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
   const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
-  function carouselViewPage() {
+  const carouselViewPage = () => {
     if (size < 576) {
       return 1;
     }
@@ -32,16 +35,30 @@ function Home() {
       return 3;
     }
     return 4;
-  }
+  };
 
+  useEffect(() => {
+    async function getDiscountProducts() {
+      await apiFunction("getDiscountProducts", { type: "get" }).then((res) => {
+        if (res.data.success) dispatch(setDiscountData(res.data.data));
+      });
+    }
+    if (!discountProduct) {
+      getDiscountProducts();
+    }
+  }, [dispatch, discountProduct]);
+  if (!discountProduct) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="page-content">
         <aside className="aside-menu">
-          {categories2?.map((cat) => (
+          {categories?.map((cat) => (
             <Link
+              state={{ id: cat._id, title: cat.name }}
               className="category"
-              to={PathConstants.CATEGORY_PRODUCT_PAGE + "/" + cat.slug}
+              to={cat.slug}
               key={cat._id}
             >
               {cat.name}
@@ -86,28 +103,21 @@ function Home() {
         centerMode={size < 590 ? true : false}
         dots={false}
       >
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
-        <ShoppingCard />
+        {discountProduct.map((dc) => (
+          <ShoppingCard
+            key={dc._id}
+            name={dc.name}
+            cover_photo={dc.cover_photo}
+            price={dc.price}
+            discount={dc.discount}
+          />
+        ))}
       </Carousel>
 
       <div className="button-area">
         <Button title={t("viewAllProducts")} />
       </div>
       <hr style={{ margin: "50px 0px" }}></hr>
-      {/* <GeneralTitle title={t("categoriesTitle")} />
-      <h1 className="sales-title">{t("categories")}</h1>
-      <div className="categories-area">
-        <CategoriesCard path={"/images/cell.png"} name="Phones" />
-        <CategoriesCard path={"/images/computer.png"} name="Computer" />
-        <CategoriesCard path={"/images/smart.png"} name="SmartWatch" />
-        <CategoriesCard path={"/images/camera.png"} name="Camera" />
-        <CategoriesCard path={"/images/headphone.png"} name="HeadPhones" />
-        <CategoriesCard path={"/images/game.png"} name="Gaming" />
-      </div>
-      <hr style={{ margin: "50px 0px" }}></hr> */}
       <GeneralTitle title={t("featured")} />
       <h1 className="sales-title">{t("arrival")}</h1>
       <div className="arrival">
