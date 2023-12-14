@@ -7,6 +7,7 @@ const PathConstants = {
   ERROR: "*",
   PRODUCT_DETAIL: "product-detail",
   SHOP_BASKET: "basket",
+  ALL_PRODUCTS: "allProducts",
 };
 
 export default PathConstants;

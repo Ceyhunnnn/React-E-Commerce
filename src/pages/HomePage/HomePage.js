@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import apiFunction from "services/Api";
 import Loading from "components/Loading/Loading";
 import { setDiscountData } from "features/discountProducts/discountSlice";
+import PathConstants from "PathConstants";
 
 function Home() {
   const dispatch = useDispatch();
@@ -115,7 +116,9 @@ function Home() {
       </Carousel>
 
       <div className="button-area">
-        <Button title={t("viewAllProducts")} />
+        <Link to={PathConstants.ALL_PRODUCTS}>
+          <Button title={t("viewAllProducts")} />
+        </Link>
       </div>
       <hr style={{ margin: "50px 0px" }}></hr>
       <GeneralTitle title={t("featured")} />
