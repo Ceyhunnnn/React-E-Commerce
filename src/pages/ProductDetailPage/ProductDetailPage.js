@@ -6,7 +6,9 @@ import { useTranslation } from "react-i18next";
 import { Carousel, Divider } from "antd";
 import GeneralTitle from "components/GeneralTitle";
 import ShoppingCard from "components/ShoppingCard";
+import { useSelector } from "react-redux";
 function ProductDetailPage() {
+  const discountProduct = useSelector((state) => state.discount.value);
   const { t } = useTranslation();
   const [selectedImg, setSelectedImg] = useState("/images/products/pd1.svg");
   const [selectedCount, setSelectedCount] = useState(1);
@@ -81,7 +83,6 @@ function ProductDetailPage() {
           <div className="product-image">
             <img src={selectedImg} alt="product-detail" />
           </div>
-
           <div className="product-detail">
             <h1 className="font-24">Havic HV G-92 Gamepad</h1>
             <p className="font-24">$192.00</p>
@@ -155,12 +156,17 @@ function ProductDetailPage() {
             </div>
           </div>
         </div>
-        <GeneralTitle title="Related Item" />
+        <GeneralTitle title="Discount Products" />
         <div className="related-area">
-          <ShoppingCard />
-          <ShoppingCard />
-          <ShoppingCard />
-          <ShoppingCard />
+          {discountProduct?.slice(0, 4).map((dc) => (
+            <ShoppingCard
+              key={dc._id}
+              name={dc.name}
+              cover_photo={dc.cover_photo}
+              price={dc.price}
+              discount={dc.discount}
+            />
+          ))}
         </div>
       </div>
     </>

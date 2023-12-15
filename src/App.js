@@ -7,6 +7,7 @@ import routes from "routes";
 import TokenService from "services/TokenService";
 import PageTitle from "utils/PageTitle";
 import { getCategoryData } from "modules/category";
+import { getDiscountProducts } from "modules/discountProducts";
 
 function App() {
   const isAuth = TokenService.getToken();
@@ -16,6 +17,7 @@ function App() {
   const getSettings = async () => {
     await getStaticData();
     await getCategoryData();
+    await getDiscountProducts();
   };
   useEffect(() => {
     getSettings();

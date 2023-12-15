@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import "./HomePage.css";
 import { useTranslation } from "react-i18next";
 import GeneralTitle from "components/GeneralTitle";
@@ -9,14 +9,11 @@ import Button from "components/Button";
 import { useScreenSize } from "hooks/useScreenSize";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import apiFunction from "services/Api";
+import { useSelector } from "react-redux";
 import Loading from "components/Loading/Loading";
-import { setDiscountData } from "features/discountProducts/discountSlice";
 import PathConstants from "PathConstants";
 
 function Home() {
-  const dispatch = useDispatch();
   const discountProduct = useSelector((state) => state.discount.value);
   const categories = useSelector((state) => state.category.value);
   const [size] = useScreenSize();
@@ -38,16 +35,6 @@ function Home() {
     return 4;
   };
 
-  useEffect(() => {
-    async function getDiscountProducts() {
-      await apiFunction("getDiscountProducts", { type: "get" }).then((res) => {
-        if (res.data.success) dispatch(setDiscountData(res.data.data));
-      });
-    }
-    if (!discountProduct) {
-      getDiscountProducts();
-    }
-  }, [dispatch, discountProduct]);
   if (!discountProduct) {
     return <Loading />;
   }
