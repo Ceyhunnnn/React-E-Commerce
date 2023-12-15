@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetailPage.css";
 import Button from "components/Button";
 import { Heart, Loop, Truck } from "components/Icons/Icons";
@@ -7,10 +7,16 @@ import { Carousel, Divider } from "antd";
 import GeneralTitle from "components/GeneralTitle";
 import ShoppingCard from "components/ShoppingCard";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import apiFunction from "services/Api";
+import PathConstants from "PathConstants";
+import Loading from "components/Loading/Loading";
 function ProductDetailPage() {
+  const [data, setData] = useState();
+  const { id } = useParams();
   const discountProduct = useSelector((state) => state.discount.value);
   const { t } = useTranslation();
-  const [selectedImg, setSelectedImg] = useState("/images/products/pd1.svg");
+  const [selectedImg, setSelectedImg] = useState();
   const [selectedCount, setSelectedCount] = useState(1);
   const imgList = [
     {
@@ -30,29 +36,31 @@ function ProductDetailPage() {
       url: "/images/products/pd4.svg",
     },
   ];
-  const colorList = [
-    {
-      id: 0,
-      color: "blue",
-    },
-    {
-      id: 1,
-      color: "red",
-    },
-    {
-      id: 2,
-      color: "green",
-    },
-  ];
-  const [selectedColor, setSelectedColor] = useState(colorList[0].color);
+  const [selectedColor, setSelectedColor] = useState();
 
   const productCountDecrement = () => {
     if (selectedCount <= 1) return;
     setSelectedCount((prev) => prev - 1);
   };
-  const productCountIncrement = () => {
-    setSelectedCount((prev) => prev + 1);
-  };
+  const productCountIncrement = () => setSelectedCount((prev) => prev + 1);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    async function getProductDetail() {
+      await apiFunction(`productDetail/${id}`, { type: "get" }).then((res) => {
+        if (res?.data?.data) {
+          setData(res?.data?.data);
+          setSelectedImg(res?.data?.data?.cover_photo);
+          setSelectedColor(res?.data?.data?.colors[0]?.name);
+        } else {
+          return window.location.replace(PathConstants.HOME);
+        }
+      });
+    }
+    getProductDetail();
+  }, [id]);
+  if (!data) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="prod-area">
@@ -81,33 +89,31 @@ function ProductDetailPage() {
             ))}
           </div>
           <div className="product-image">
-            <img src={selectedImg} alt="product-detail" />
+            {data?.cover_photo && (
+              <img src={selectedImg} alt="product-detail" />
+            )}
           </div>
           <div className="product-detail">
-            <h1 className="font-24">Havic HV G-92 Gamepad</h1>
-            <p className="font-24">$192.00</p>
-            <p className="font-14">
-              PlayStation 5 Controller Skin High quality vinyl with air channel
-              adhesive for easy bubble free install & mess free removal Pressure
-              sensitive.
-            </p>
+            <h1 className="font-24">{data?.name}</h1>
+            <p className="font-24">${data?.price}</p>
+            <p className="font-14">{data?.description}</p>
             <div className="display-flex">
               <p className="font-20">{t("colors")}:</p>
               <span className="display-flex">
-                {colorList.map((color) => (
+                {data?.colors?.map((color) => (
                   <div
                     className={`${
-                      color.color === selectedColor ? "selected-color" : ""
+                      color.name === selectedColor ? "selected-color" : ""
                     }`}
                   >
                     <div
-                      onClick={() => setSelectedColor(color.color)}
+                      onClick={() => setSelectedColor(color.name)}
                       className={`${
-                        color.color === selectedColor
+                        color.name === selectedColor
                           ? "color-type-small"
                           : "color-type"
                       }`}
-                      style={{ backgroundColor: color.color }}
+                      style={{ backgroundColor: color.name }}
                     ></div>
                   </div>
                 ))}
@@ -161,6 +167,7 @@ function ProductDetailPage() {
           {discountProduct?.slice(0, 4).map((dc) => (
             <ShoppingCard
               key={dc._id}
+              id={dc._id}
               name={dc.name}
               cover_photo={dc.cover_photo}
               price={dc.price}

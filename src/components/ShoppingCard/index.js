@@ -5,11 +5,11 @@ import { Rate } from "antd";
 import { Link } from "react-router-dom";
 import PathConstants from "PathConstants";
 
-function ShoppingCard({ name, cover_photo, price, discount }) {
+function ShoppingCard({ name, cover_photo, price, discount, id }) {
   return (
     <div className="shop-card">
       <div className="shop-photo">
-        <Link to={`/${PathConstants.PRODUCT_DETAIL}`}>
+        <Link to={`/${PathConstants.PRODUCT_DETAIL}/${id}`}>
           <img
             className="cover-photo-size"
             src={cover_photo}

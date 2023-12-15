@@ -60,7 +60,7 @@ const routes = [
         element: <ShopBasketPage />,
       },
       {
-        path: PathConstants.PRODUCT_DETAIL,
+        path: PathConstants.PRODUCT_DETAIL + "/:id",
         element: <ProductDetailPage />,
       },
     ],

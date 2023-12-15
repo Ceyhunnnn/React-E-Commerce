@@ -94,6 +94,7 @@ function Home() {
         {discountProduct.map((dc) => (
           <ShoppingCard
             key={dc._id}
+            id={dc._id}
             name={dc.name}
             cover_photo={dc.cover_photo}
             price={dc.price}

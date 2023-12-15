@@ -81,6 +81,7 @@ function CategoryProductPage() {
         {data?.map((prod) => (
           <ShoppingCard
             key={prod._id}
+            id={prod._id}
             name={prod.name}
             cover_photo={prod.cover_photo}
             price={prod.price}
