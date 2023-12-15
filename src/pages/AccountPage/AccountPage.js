@@ -12,6 +12,8 @@ import { getUserData } from "modules/signUp";
 import axios from "axios";
 import Loading from "components/Loading/Loading";
 import { Upload } from "components/Icons/Icons";
+import PathConstants from "PathConstants";
+import TokenService from "services/TokenService";
 
 function AccountPage() {
   const [loading, setLoading] = useState(false);
@@ -139,16 +141,6 @@ function AccountPage() {
       }
     });
   };
-
-  useEffect(() => {
-    form.setFieldsValue({
-      name: user?.name,
-      email: user?.email,
-      lastName: user?.lastName,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
   const updateUserData = () => {
     setLoading(true);
     form
@@ -170,6 +162,26 @@ function AccountPage() {
       })
       .catch(() => setLoading(false));
   };
+  const deleteAccount = async () => {
+    const body = {
+      id: user._id,
+    };
+    await apiFunction("deleteAccount", { body, type: "delete" }).then((res) => {
+      if (res?.data?.message) {
+        TokenService.deleteToken();
+        return window.location.replace(PathConstants.HOME);
+      }
+    });
+  };
+  useEffect(() => {
+    form.setFieldsValue({
+      name: user?.name,
+      email: user?.email,
+      lastName: user?.lastName,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   if (!user) {
     return <Loading />;
   }
@@ -238,6 +250,15 @@ function AccountPage() {
               ))}
             </div>
             <div className="button-area-end">
+              <Popconfirm
+                title="Delete Profile"
+                description="Are you sure to delete this account"
+                onConfirm={deleteAccount}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button title={t("deleteAccount")} height="40px" />
+              </Popconfirm>
               <Popconfirm
                 title="Update Profile"
                 description="Are you sure to update this form"
