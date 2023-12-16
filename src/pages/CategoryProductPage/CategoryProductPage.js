@@ -91,10 +91,11 @@ function CategoryProductPage() {
       {isAllProductRouteName && (
         <Row justify="center">
           <Button
+            className="more-prod"
             style={{ margin: "10px 0px", display: `${isHiddenMore}` }}
             onClick={() => setCurrentPage((prevState) => prevState + 1)}
           >
-            More
+            More Product
           </Button>
         </Row>
       )}

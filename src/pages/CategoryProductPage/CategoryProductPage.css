@@ -53,3 +53,8 @@
     align-items: center;
     margin: 40px 0px;
 }
+
+.more-prod {
+    background-color: #DB4444;
+    color: white
+}
