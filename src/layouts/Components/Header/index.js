@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Container from "components/Container";
 import { Link, NavLink } from "react-router-dom";
 import {
+  Badge,
   // Input,
   Popover,
   Select,
@@ -110,7 +111,9 @@ function Header() {
                   defaultValue={Config.lang.default}
                 />
                 <Link to={PathConstants.SHOP_BASKET}>
-                  <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                  <Badge count={0}>
+                    <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                  </Badge>
                 </Link>
                 {user && (
                   <>
