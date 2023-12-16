@@ -162,11 +162,11 @@ function AccountPage() {
       })
       .catch(() => setLoading(false));
   };
-  const deleteAccount = async () => {
+  const deactiveAccount = async () => {
     const body = {
       id: user._id,
     };
-    await apiFunction("deleteAccount", { body, type: "delete" }).then((res) => {
+    await apiFunction("deactiveAccount", { body, type: "post" }).then((res) => {
       if (res?.data?.message) {
         TokenService.deleteToken();
         return window.location.replace(PathConstants.HOME);
@@ -253,7 +253,7 @@ function AccountPage() {
               <Popconfirm
                 title="Delete Profile"
                 description="Are you sure to delete this account"
-                onConfirm={deleteAccount}
+                onConfirm={deactiveAccount}
                 okText="Yes"
                 cancelText="No"
               >

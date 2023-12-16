@@ -11,11 +11,7 @@ import {
 import Config from "./../../../config";
 import PathConstants from "PathConstants";
 import PopoverContent from "./components/PopoverContent";
-import {
-  HeartOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
 import { useSelector } from "react-redux";
@@ -113,12 +109,11 @@ function Header() {
                   }}
                   defaultValue={Config.lang.default}
                 />
+                <Link to={PathConstants.SHOP_BASKET}>
+                  <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                </Link>
                 {user && (
                   <>
-                    <HeartOutlined style={{ fontSize: "20px" }} />
-                    <Link to={PathConstants.SHOP_BASKET}>
-                      <ShoppingCartOutlined style={{ fontSize: "20px" }} />
-                    </Link>
                     <Popover
                       placement="bottomRight"
                       title={Config.app.title}
