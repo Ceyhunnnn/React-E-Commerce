@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./ShopBasketPage.css";
-import { Input, InputNumber } from "antd";
+import { Input, InputNumber, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import Button from "components/Button";
 import { Trash } from "components/Icons/Icons";
 import StorageService from "services/StorageService";
 import { basketSizeChange } from "modules/basketCount";
+import { useSelector } from "react-redux";
 
 function ShopBasketPage() {
+  const user = useSelector((state) => state.user.value);
   const [subTotal, setSubTotal] = useState(1);
   const [basketList, setBasketList] = useState(
     JSON.parse(StorageService.getStorage("basket"))
@@ -29,7 +31,6 @@ function ShopBasketPage() {
     setBasketList(data);
     calculateSubTotal();
   };
-
   const calculateSubTotal = () => {
     const total = basketList
       .map((product) => {
@@ -38,6 +39,17 @@ function ShopBasketPage() {
       .reduce((a, b) => a + b, 0);
     setSubTotal(total);
   };
+  const checkToUser = () => {
+    if (!user) {
+      notification.error({
+        message: "User Not Found",
+        description: "You must log in to purchase",
+      });
+    } else {
+      createOrder();
+    }
+  };
+  const createOrder = () => {};
   useEffect(() => {
     if (basketList) {
       calculateSubTotal();
@@ -111,7 +123,12 @@ function ShopBasketPage() {
                   <p>${subTotal}</p>
                 </div>
                 <div className="flex-area">
-                  <Button title={t("process")} height="40px" width="150px" />
+                  <Button
+                    title={t("buy")}
+                    onClick={checkToUser}
+                    height="40px"
+                    width="150px"
+                  />
                 </div>
               </div>
             </div>
