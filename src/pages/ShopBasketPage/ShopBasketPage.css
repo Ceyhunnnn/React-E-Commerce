@@ -143,3 +143,11 @@
 .no-prodcut img {
     height: 500px;
 }
+
+.product-name {
+    font-size: 12px;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

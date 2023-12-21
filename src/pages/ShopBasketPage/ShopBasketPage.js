@@ -70,7 +70,7 @@ function ShopBasketPage() {
                       onClick={() => deleteProduct(bas)}
                     />
                   </div>
-                  <p style={{ fontSize: "12px" }}>{bas.name}</p>
+                  <p className="product-name">{bas.name}</p>
                 </div>
                 <p>{bas.price}</p>
                 <InputNumber
