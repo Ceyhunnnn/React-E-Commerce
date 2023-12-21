@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { useTranslation } from "react-i18next";
 import Container from "components/Container";
@@ -16,8 +16,11 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { Hamburger } from "components/Icons/Icons";
 import { useScreenSize } from "hooks/useScreenSize";
 import { useSelector } from "react-redux";
+import StorageService from "services/StorageService";
 
 function Header() {
+  const basketChangeSize = useSelector((state) => state.basketSize.value);
+  const [basketCount, setBasketCount] = useState(0);
   const [size] = useScreenSize();
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
@@ -58,9 +61,13 @@ function Header() {
       label: t("languages.tr"),
     },
   ];
-  // const changeLanguage = async (val) => {
-  //   await i18n.changeLanguage(val);
-  // };
+  const changeCountBasket = () => {
+    const basketSize = JSON.parse(StorageService.getStorage("basket"));
+    setBasketCount(basketSize?.length);
+  };
+  useEffect(() => {
+    changeCountBasket();
+  }, [basketChangeSize]);
 
   return (
     <>
@@ -111,7 +118,7 @@ function Header() {
                   defaultValue={Config.lang.default}
                 />
                 <Link to={PathConstants.SHOP_BASKET}>
-                  <Badge count={0}>
+                  <Badge count={basketCount}>
                     <ShoppingCartOutlined style={{ fontSize: "20px" }} />
                   </Badge>
                 </Link>

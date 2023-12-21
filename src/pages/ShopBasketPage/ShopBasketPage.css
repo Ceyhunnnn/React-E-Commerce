@@ -121,6 +121,22 @@
         margin-bottom: 10px;
     }
 
+}
 
+.no-prodcut {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: 30px 10px;
+    text-align: center;
+}
 
+.no-prodcut p {
+    margin: 20px 0px;
+    font-size: 25px;
+}
+
+.no-prodcut img {
+    height: 500px;
 }

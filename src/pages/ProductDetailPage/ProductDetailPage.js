@@ -167,6 +167,7 @@ function ProductDetailPage() {
           {discountProduct?.slice(0, 4).map((dc) => (
             <ShoppingCard
               key={dc._id}
+              fullObject={dc}
               id={dc._id}
               name={dc.name}
               cover_photo={dc.cover_photo}

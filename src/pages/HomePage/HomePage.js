@@ -93,6 +93,7 @@ function Home() {
       >
         {discountProduct.map((dc) => (
           <ShoppingCard
+            fullObject={dc}
             key={dc._id}
             id={dc._id}
             name={dc.name}

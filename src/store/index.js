@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import basketSlice from "features/basketSize/basketSlice";
 import categorySlice from "features/category/categorySlice";
 import discountSlice from "features/discountProducts/discountSlice";
 import staticSlice from "features/static/staticSlice";
@@ -9,5 +10,6 @@ export const store = configureStore({
     setting: staticSlice,
     category: categorySlice,
     discount: discountSlice,
+    basketSize: basketSlice,
   },
 });

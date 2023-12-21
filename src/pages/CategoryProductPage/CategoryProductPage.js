@@ -80,6 +80,7 @@ function CategoryProductPage() {
       <div className="shopping-area">
         {data?.map((prod) => (
           <ShoppingCard
+            fullObject={prod}
             key={prod._id}
             id={prod._id}
             name={prod.name}
@@ -99,7 +100,7 @@ function CategoryProductPage() {
           </Button>
         </Row>
       )}
-      {data.length === 0 && (
+      {data?.length === 0 && (
         <div className="progress-area">
           <h2 className="font-36">{title} Products Loading</h2>
           <img src="/images/progress.svg" alt="Progress" />
