@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDetailPage.css";
 import Button from "components/Button";
-import { Heart, Loop, Truck } from "components/Icons/Icons";
+import { Loop, Truck } from "components/Icons/Icons";
 import { useTranslation } from "react-i18next";
 import { Carousel, Divider } from "antd";
 import GeneralTitle from "components/GeneralTitle";
@@ -11,13 +11,13 @@ import { useParams } from "react-router-dom";
 import apiFunction from "services/Api";
 import PathConstants from "PathConstants";
 import Loading from "components/Loading/Loading";
+import { saveProductLocalstorage } from "modules/saveProductLocalstorage";
 function ProductDetailPage() {
   const [data, setData] = useState();
   const { id } = useParams();
   const discountProduct = useSelector((state) => state.discount.value);
   const { t } = useTranslation();
   const [selectedImg, setSelectedImg] = useState();
-  const [selectedCount, setSelectedCount] = useState(1);
   const imgList = [
     {
       id: 0,
@@ -38,11 +38,6 @@ function ProductDetailPage() {
   ];
   const [selectedColor, setSelectedColor] = useState();
 
-  const productCountDecrement = () => {
-    if (selectedCount <= 1) return;
-    setSelectedCount((prev) => prev - 1);
-  };
-  const productCountIncrement = () => setSelectedCount((prev) => prev + 1);
   useEffect(() => {
     window.scrollTo(0, 0);
     async function getProductDetail() {
@@ -120,23 +115,16 @@ function ProductDetailPage() {
               </span>
             </div>
             <div className="event-area">
-              <div className="count-area">
-                <span className="box" onClick={productCountDecrement}>
-                  -
-                </span>
-                <span className="box count-content">{selectedCount}</span>
-                <span
-                  onClick={productCountIncrement}
-                  className="box"
-                  style={{ backgroundColor: "#DB4444", color: "white" }}
-                >
-                  +
-                </span>
-              </div>
-              <Button title={t("buy")} height={44} width={65} />
-              <span className="box">
-                <Heart width={25} height={25} />
-              </span>
+              <Button
+                title={t("addBasket")}
+                height={44}
+                width="100%"
+                onClick={() => {
+                  const fullObject = { ...data };
+                  fullObject.selectedColor = selectedColor;
+                  saveProductLocalstorage(fullObject);
+                }}
+              />
             </div>
             <div className="info-area">
               <div className="display-flex">
