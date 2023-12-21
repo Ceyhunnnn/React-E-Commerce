@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import "./ShopBasketPage.css";
 import { Input, InputNumber } from "antd";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,7 @@ import StorageService from "services/StorageService";
 import { basketSizeChange } from "modules/basketCount";
 
 function ShopBasketPage() {
+  const [subTotal, setSubTotal] = useState(1);
   const [basketList, setBasketList] = useState(
     JSON.parse(StorageService.getStorage("basket"))
   );
@@ -20,6 +22,28 @@ function ShopBasketPage() {
     setBasketList(updateProductList);
     StorageService.setStorage("basket", JSON.stringify(updateProductList));
   };
+  const calculateProductSubTotal = (bas, value) => {
+    const objIndex = basketList.findIndex((obj) => obj._id === bas._id);
+    basketList[objIndex].quantity = bas.price * value;
+    const data = [...basketList];
+    setBasketList(data);
+    calculateSubTotal();
+  };
+
+  const calculateSubTotal = () => {
+    const total = basketList
+      .map((product) => {
+        return product.quantity;
+      })
+      .reduce((a, b) => a + b, 0);
+    setSubTotal(total);
+  };
+  useEffect(() => {
+    if (basketList) {
+      calculateSubTotal();
+    }
+  }, [basketList]);
+
   return (
     <>
       {basketList?.length > 0 && (
@@ -51,10 +75,12 @@ function ShopBasketPage() {
                 <p>{bas.price}</p>
                 <InputNumber
                   min={1}
-                  defaultValue={1}
-                  onChange={(value) => {}}
+                  defaultValue={bas.quantity / bas.price}
+                  onChange={(value) => {
+                    calculateProductSubTotal(bas, value);
+                  }}
                 />
-                <p>{bas.price}</p>
+                <p>{bas.quantity}</p>
               </div>
             ))}
           </div>
@@ -72,7 +98,7 @@ function ShopBasketPage() {
                 <p style={{ padding: "10px" }}>Cart Total</p>
                 <div className="cart-text">
                   <p>SubTotal:</p>
-                  <p>$123</p>
+                  <p>${subTotal}</p>
                 </div>
                 <hr></hr>
                 <div className="cart-text">
@@ -82,7 +108,7 @@ function ShopBasketPage() {
                 <hr></hr>
                 <div className="cart-text">
                   <p>Total:</p>
-                  <p>$1233</p>
+                  <p>${subTotal}</p>
                 </div>
                 <div className="flex-area">
                   <Button title={t("process")} height="40px" width="150px" />
