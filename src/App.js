@@ -18,7 +18,7 @@ function App() {
   const getUser = async () => {
     await getUserData();
   };
-  const getSettings = async () => {
+  const getRequiredData = async () => {
     await getStaticData();
     await getCategoryData();
     await getDiscountProducts();
@@ -27,14 +27,11 @@ function App() {
     }
   };
   useEffect(() => {
-    getSettings();
-  }, []);
-
-  useEffect(() => {
     PageTitle();
   }, [window.location.pathname]);
 
   useEffect(() => {
+    getRequiredData();
     if (isAuth) {
       getUser();
     }
