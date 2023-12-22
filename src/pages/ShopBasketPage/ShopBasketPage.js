@@ -8,6 +8,7 @@ import { Trash } from "components/Icons/Icons";
 import StorageService from "services/StorageService";
 import { basketSizeChange } from "modules/basketCount";
 import { useSelector } from "react-redux";
+import apiFunction from "services/Api";
 
 function ShopBasketPage() {
   const user = useSelector((state) => state.user.value);
@@ -49,10 +50,15 @@ function ShopBasketPage() {
       createOrder();
     }
   };
+  const getOrderList = async () => {
+    apiFunction(`getUserBasket/${user?._id}`).then((res) => console.log(res));
+  };
   const createOrder = () => {};
   useEffect(() => {
-    if (basketList) {
+    if (basketList.length > 0) {
       calculateSubTotal();
+    } else if (user?._id) {
+      getOrderList();
     }
   }, [basketList]);
 
@@ -61,7 +67,7 @@ function ShopBasketPage() {
       {basketList?.length > 0 && (
         <>
           <div className="basket-area">
-            <div className="basket-grid">
+            <div className="basket-grid" id="divToPrint">
               <p>Product</p>
               <p>Price</p>
               <p>Quantity</p>
@@ -87,6 +93,7 @@ function ShopBasketPage() {
                 <p>{bas.price}</p>
                 <InputNumber
                   min={1}
+                  max={15}
                   defaultValue={bas.quantity / bas.price}
                   onChange={(value) => {
                     calculateProductSubTotal(bas, value);
