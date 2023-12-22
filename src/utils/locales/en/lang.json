@@ -79,5 +79,14 @@
     },
     "colors":"Colors",
     "buy":"Buy Now",
-    "addBasket":"Add to basket"
+    "addBasket":"Add to basket",
+    "product":"Product",
+    "price":"Price",
+    "quantity":"Quantity",
+    "subTotal":"SubTotal",
+    "cartTotal":"Cart Total",
+    "shipping":"Shipping",
+    "free":"Free",
+    "total":"Total",
+    "notFoundProduct":"There are no products in your cart yet."
 }

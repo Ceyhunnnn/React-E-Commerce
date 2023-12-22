@@ -68,10 +68,10 @@ function ShopBasketPage() {
         <>
           <div className="basket-area">
             <div className="basket-grid" id="divToPrint">
-              <p>Product</p>
-              <p>Price</p>
-              <p>Quantity</p>
-              <p>Subtotal</p>
+              <p>{t("product")}</p>
+              <p>{t("price")}</p>
+              <p>{t("quantity")}</p>
+              <p>{t("subTotal")}</p>
             </div>
             {basketList?.map((bas) => (
               <div className="basket-grid" key={bas._id}>
@@ -114,19 +114,19 @@ function ShopBasketPage() {
                 <Button title={t("applyCoupon")} height="40px" width="100px" />
               </div>
               <div className="cart-total">
-                <p style={{ padding: "10px" }}>Cart Total</p>
+                <p style={{ padding: "10px" }}>{t("cartTotal")}</p>
                 <div className="cart-text">
-                  <p>SubTotal:</p>
+                  <p>{t("subTotal")}:</p>
                   <p>${subTotal}</p>
                 </div>
                 <hr></hr>
                 <div className="cart-text">
-                  <p>Shipping:</p>
-                  <p>Free</p>
+                  <p>{t("shipping")}:</p>
+                  <p>{t("free")}</p>
                 </div>
                 <hr></hr>
                 <div className="cart-text">
-                  <p>Total:</p>
+                  <p>{t("total")}:</p>
                   <p>${subTotal}</p>
                 </div>
                 <div className="flex-area">
@@ -144,7 +144,7 @@ function ShopBasketPage() {
       )}
       {basketList?.length <= 0 && (
         <div className="no-prodcut">
-          <p>Sepetinizde henüz ürün bulunmamaktadır.</p>
+          <p>{t("notFoundProduct")}</p>
           <img src="/images/products/emptyProduct.svg" alt="EmptyProduct" />
         </div>
       )}
