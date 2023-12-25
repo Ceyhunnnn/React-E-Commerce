@@ -8,14 +8,18 @@ import { Trash } from "components/Icons/Icons";
 import StorageService from "services/StorageService";
 import { basketSizeChange } from "modules/basketCount";
 import { useSelector } from "react-redux";
-import apiFunction from "services/Api";
 
 function ShopBasketPage() {
   const user = useSelector((state) => state.user.value);
+  const basket = useSelector((state) => state.basket.value);
   const [subTotal, setSubTotal] = useState(1);
-  const [basketList, setBasketList] = useState(
-    JSON.parse(StorageService.getStorage("basket"))
-  );
+  const [basketList, setBasketList] = useState(() => {
+    if (basket) {
+      return basket;
+    } else {
+      return JSON.parse(StorageService.getStorage("basket"));
+    }
+  });
   const { t } = useTranslation();
   const deleteProduct = (bas) => {
     const updateProductList = basketList.filter(
@@ -50,15 +54,11 @@ function ShopBasketPage() {
       createOrder();
     }
   };
-  const getOrderList = async () => {
-    apiFunction(`getUserBasket/${user?._id}`).then((res) => console.log(res));
-  };
+
   const createOrder = () => {};
   useEffect(() => {
-    if (basketList.length > 0) {
+    if (basketList?.length > 0) {
       calculateSubTotal();
-    } else if (user?._id) {
-      getOrderList();
     }
   }, [basketList]);
 
