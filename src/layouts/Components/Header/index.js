@@ -65,9 +65,9 @@ function Header() {
     },
   ];
   const changeCountBasket = () => {
-    if (user && basket.length > 0) {
-      setBasketCount(basket.length);
-    } else if (basketParseData.length >= 0) {
+    if (user && basket?.length > 0) {
+      setBasketCount(basket?.length);
+    } else if (basketParseData?.length >= 0) {
       setBasketCount(basketParseData?.length);
     }
   };
