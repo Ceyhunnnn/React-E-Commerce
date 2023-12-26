@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import { useTranslation } from "react-i18next";
@@ -20,6 +21,8 @@ import StorageService from "services/StorageService";
 
 function Header() {
   const basketChangeSize = useSelector((state) => state.basketSize.value);
+  const basket = useSelector((state) => state.basket.value);
+  const basketParseData = JSON.parse(StorageService.getStorage("basket"));
   const [basketCount, setBasketCount] = useState(0);
   const [size] = useScreenSize();
   const [isOpen, setIsOpen] = useState(false);
@@ -62,12 +65,16 @@ function Header() {
     },
   ];
   const changeCountBasket = () => {
-    const basketSize = JSON.parse(StorageService.getStorage("basket"));
-    setBasketCount(basketSize?.length);
+    if (user && basket.length > 0) {
+      console.log("asddsa");
+      setBasketCount(basket.length);
+    } else if (basketParseData.length >= 0) {
+      setBasketCount(basketParseData?.length);
+    }
   };
   useEffect(() => {
     changeCountBasket();
-  }, [basketChangeSize]);
+  }, [basketChangeSize, basket]);
 
   return (
     <>
