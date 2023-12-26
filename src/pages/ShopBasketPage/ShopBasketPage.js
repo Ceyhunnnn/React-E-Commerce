@@ -8,18 +8,15 @@ import { Trash } from "components/Icons/Icons";
 import StorageService from "services/StorageService";
 import { basketSizeChange } from "modules/basketCount";
 import { useSelector } from "react-redux";
+import Loading from "components/Loading/Loading";
 
 function ShopBasketPage() {
+  const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.user.value);
   const basket = useSelector((state) => state.basket.value);
   const [subTotal, setSubTotal] = useState(1);
-  const [basketList, setBasketList] = useState(() => {
-    if (basket) {
-      return basket;
-    } else {
-      return JSON.parse(StorageService.getStorage("basket"));
-    }
-  });
+  const [basketList, setBasketList] = useState([]);
+  const basketLocalStorage = JSON.parse(StorageService.getStorage("basket"));
   const { t } = useTranslation();
   const deleteProduct = (bas) => {
     const updateProductList = basketList.filter(
@@ -54,13 +51,29 @@ function ShopBasketPage() {
       createOrder();
     }
   };
-
   const createOrder = () => {};
   useEffect(() => {
     if (basketList?.length > 0) {
       calculateSubTotal();
     }
   }, [basketList]);
+
+  useEffect(() => {
+    if (basket?.length > 0) {
+      setBasketList(basket);
+      setLoading(false);
+    }
+  }, [basket]);
+  useEffect(() => {
+    if (basketLocalStorage.length > 0) {
+      setBasketList(basketLocalStorage);
+    }
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>

@@ -11,13 +11,14 @@ import { getCategoryData } from "modules/category";
 import { getDiscountProducts } from "modules/discountProducts";
 import StorageService from "services/StorageService";
 import apiFunction from "services/Api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserBasketList } from "modules/basketItems";
+import { setBasketItems } from "features/basketItems/basketitemsSlice";
 
 function App() {
-  const localData = StorageService.getStorage("basket");
+  const dispatch = useDispatch();
+  const basketParseData = JSON.parse(StorageService.getStorage("basket"));
   const user = useSelector((state) => state.user.value);
-  const basket = useSelector((state) => state.basket.value);
   const isAuth = TokenService.getToken();
   const basketLocalStorage = JSON.stringify(
     StorageService.getStorage("basket")
@@ -34,45 +35,41 @@ function App() {
   const setBasket = async () => {
     const body = {
       userId: user._id,
-      basketList: JSON.parse(localData),
+      basketList: basketParseData,
     };
     await apiFunction(`createBasket/${user._id}`, {
       body,
       type: "post",
-    }).then((res) => {
-      StorageService.setStorage("basket", JSON.stringify([]));
+    }).then(async (res) => {
+      await getUserBasketList(user._id);
     });
   };
   const updateBasket = async () => {
     const body = {
-      updatedList: JSON.parse(localData),
+      updatedList: basketParseData,
     };
     await apiFunction(`updateBasket/${user._id}`, { body, type: "patch" }).then(
       async (res) => {
-        StorageService.setStorage("basket", JSON.stringify([]));
         await getUserBasketList(user._id);
       }
     );
   };
   const checkToUserBasket = async () => {
-    if (basket && JSON.parse(localData).length >= 1) {
-      await updateBasket();
-    } else {
-      await setBasket();
-    }
+    await apiFunction(`getUserBasket/${user._id}`).then(async (res) => {
+      dispatch(setBasketItems(res?.data?.data[0]?.basketList));
+      if (res?.data?.data?.length && basketParseData.length >= 1) {
+        await updateBasket();
+        StorageService.setStorage("basket", JSON.stringify([]));
+      } else if (basketParseData.length >= 1) {
+        await setBasket();
+        StorageService.setStorage("basket", JSON.stringify([]));
+      }
+    });
   };
 
   useEffect(() => {
-    if (user && JSON.parse(localData).length >= 1) {
-      checkToUserBasket();
-    }
-  }, [user]);
-  useEffect(() => {
-    async function getUserBasket(userId) {
-      await getUserBasketList(userId);
-    }
     if (user) {
-      getUserBasket(user._id);
+      checkToUserBasket();
     }
   }, [user]);
 
