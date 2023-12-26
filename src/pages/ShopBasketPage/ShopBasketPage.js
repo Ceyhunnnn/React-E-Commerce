@@ -30,7 +30,6 @@ function ShopBasketPage() {
       };
       await apiFunction(`deleteBasketItem`, { body, type: "delete" }).then(
         async (res) => {
-          console.log(res);
           if (res.status === 200) {
             await getUserBasketList(user._id);
           }

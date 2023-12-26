@@ -1,6 +1,6 @@
-import { notification } from "antd";
 import StorageService from "services/StorageService";
 import { basketSizeChange } from "./basketCount";
+import { addedToCard, alreadyAdded } from "./notifications";
 
 export const saveProductLocalstorage = (fullObject) => {
   basketSizeChange(1);
@@ -20,16 +20,4 @@ export const saveProductLocalstorage = (fullObject) => {
       alreadyAdded();
     }
   }
-};
-const alreadyAdded = () => {
-  notification.info({
-    message: "Adding Products to Cart",
-    description: "The product is already added to your cart",
-  });
-};
-const addedToCard = () => {
-  notification.success({
-    message: "Adding Products to Cart",
-    description: "The product has been successfully added to your cart",
-  });
 };

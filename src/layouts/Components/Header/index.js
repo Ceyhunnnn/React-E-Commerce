@@ -66,7 +66,6 @@ function Header() {
   ];
   const changeCountBasket = () => {
     if (user && basket.length > 0) {
-      console.log("asddsa");
       setBasketCount(basket.length);
     } else if (basketParseData.length >= 0) {
       setBasketCount(basketParseData?.length);
