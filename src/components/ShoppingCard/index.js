@@ -6,34 +6,13 @@ import { Link } from "react-router-dom";
 import PathConstants from "PathConstants";
 import { saveProductLocalstorage } from "modules/saveProductLocalstorage";
 import { useSelector } from "react-redux";
-import { addedToCard, alreadyAdded } from "modules/notifications";
-import apiFunction from "services/Api";
-import { getUserBasketList } from "modules/basketItems";
+import { saveProductDatabase } from "modules/saveProductDatabase";
 
 function ShoppingCard({ name, cover_photo, price, discount, id, fullObject }) {
   const user = useSelector((state) => state.user.value);
-  const basket = useSelector((state) => state.basket.value);
   const addBasketItem = async () => {
     if (user) {
-      const isItemIncludes = basket.filter(
-        (item) => item._id === fullObject._id
-      );
-      if (isItemIncludes.length === 0) {
-        const body = {
-          userId: user._id,
-          item: fullObject,
-        };
-        await apiFunction("addItemToBasket", { body, type: "post" }).then(
-          (res) => {
-            if (res.status === 200) {
-              addedToCard();
-              getUserBasketList(user._id);
-            }
-          }
-        );
-      } else {
-        alreadyAdded();
-      }
+      saveProductDatabase(fullObject);
     } else {
       saveProductLocalstorage(fullObject);
     }

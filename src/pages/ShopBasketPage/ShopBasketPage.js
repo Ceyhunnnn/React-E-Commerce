@@ -50,10 +50,18 @@ function ShopBasketPage() {
     });
   };
   const calculateProductSubTotal = (bas, value) => {
-    const objIndex = basketList.findIndex((obj) => obj._id === bas._id);
-    basketList[objIndex].quantity = bas.price * value;
-    const data = [...basketList];
-    setBasketList(data);
+    if (user) {
+      let tempArray = JSON.parse(JSON.stringify(basketList));
+      const objIndex = tempArray.findIndex((obj) => obj._id === bas._id);
+      tempArray[objIndex].quantity = bas.price * value;
+      const data = [...tempArray];
+      setBasketList(data);
+    } else {
+      const objIndex = basketList.findIndex((obj) => obj._id === bas._id);
+      basketList[objIndex].quantity = bas.price * value;
+      const data = [...basketList];
+      setBasketList(data);
+    }
     calculateSubTotal();
   };
   const calculateSubTotal = () => {
@@ -80,7 +88,6 @@ function ShopBasketPage() {
       calculateSubTotal();
     }
   }, [basketList]);
-
   useEffect(() => {
     if (basket?.length >= 0) {
       setBasketList(basket);
@@ -97,7 +104,6 @@ function ShopBasketPage() {
   if (loading) {
     return <Loading />;
   }
-
   return (
     <Spin spinning={deleteSpin}>
       {basketList?.length > 0 && (

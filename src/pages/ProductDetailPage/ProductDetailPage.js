@@ -12,7 +12,9 @@ import apiFunction from "services/Api";
 import PathConstants from "PathConstants";
 import Loading from "components/Loading/Loading";
 import { saveProductLocalstorage } from "modules/saveProductLocalstorage";
+import { saveProductDatabase } from "modules/saveProductDatabase";
 function ProductDetailPage() {
+  const user = useSelector((state) => state.user.value);
   const [data, setData] = useState();
   const { id } = useParams();
   const discountProduct = useSelector((state) => state.discount.value);
@@ -53,6 +55,13 @@ function ProductDetailPage() {
     }
     getProductDetail();
   }, [id]);
+  const addToBasket = async (fullObject) => {
+    if (user) {
+      saveProductDatabase(fullObject);
+    } else {
+      saveProductLocalstorage(fullObject);
+    }
+  };
   if (!data) {
     return <Loading />;
   }
@@ -122,7 +131,7 @@ function ProductDetailPage() {
                 onClick={() => {
                   const fullObject = { ...data };
                   fullObject.selectedColor = selectedColor;
-                  saveProductLocalstorage(fullObject);
+                  addToBasket(fullObject);
                 }}
               />
             </div>
