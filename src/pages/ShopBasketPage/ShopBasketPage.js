@@ -135,7 +135,7 @@ function ShopBasketPage() {
                 <p>{bas.price}</p>
                 <InputNumber
                   min={1}
-                  max={15}
+                  max={bas.stock}
                   defaultValue={bas.quantity / bas.price}
                   onChange={(value) => {
                     calculateProductSubTotal(bas, value);
