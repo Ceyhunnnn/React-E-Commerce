@@ -10,6 +10,7 @@ export const basketitemSlice = createSlice({
   reducers: {
     setBasketItems: (state, action) => {
       state.value = action.payload;
+      // console.log(action.payload.basketList);
     },
   },
 });

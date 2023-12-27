@@ -56,7 +56,7 @@ function App() {
   };
   const checkToUserBasket = async () => {
     await apiFunction(`getUserBasket/${user._id}`).then(async (res) => {
-      dispatch(setBasketItems(res?.data?.data[0]?.basketList));
+      dispatch(setBasketItems(res?.data?.data[0]));
       if (res?.data?.data?.length && basketParseData.length >= 1) {
         await updateBasket();
         StorageService.setStorage("basket", JSON.stringify([]));

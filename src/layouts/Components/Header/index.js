@@ -65,15 +65,15 @@ function Header() {
     },
   ];
   const changeCountBasket = () => {
-    if (user && basket?.length > 0) {
-      setBasketCount(basket?.length);
+    if (user && basket?.basketList?.length > 0) {
+      setBasketCount(basket?.basketList?.length);
     } else if (basketParseData?.length >= 0) {
       setBasketCount(basketParseData?.length);
     }
   };
   useEffect(() => {
     changeCountBasket();
-  }, [basketChangeSize, basket]);
+  }, [basketChangeSize, basket?.basketList]);
 
   return (
     <>

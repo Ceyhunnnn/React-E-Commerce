@@ -1,8 +1,8 @@
 import React from "react";
 import "./AboutPage.css";
 import { useTranslation } from "react-i18next";
-import AboutCard from "./component/Card";
-import ServiceCard from "./component/ServiceCard";
+import AboutCard from "./components/Card";
+import ServiceCard from "./components/ServiceCard";
 import { useSelector } from "react-redux";
 import Loading from "components/Loading/Loading";
 

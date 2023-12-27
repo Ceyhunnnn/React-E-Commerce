@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./ShopBasketPage.css";
-import { Input, InputNumber, Spin, notification } from "antd";
+import { Input, InputNumber, Modal, Spin, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import Button from "components/Button";
 import { Trash } from "components/Icons/Icons";
@@ -11,8 +11,11 @@ import { useSelector } from "react-redux";
 import Loading from "components/Loading/Loading";
 import apiFunction from "services/Api";
 import { getUserBasketList } from "modules/basketItems";
+import { getDiscountProducts } from "modules/discountProducts";
+import OrderModalContent from "./components/OrderModalContent/OrderModalContent";
 
 function ShopBasketPage() {
+  const [orderModal, setOrderModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [deleteSpin, setDeleteSpin] = useState(false);
   const user = useSelector((state) => state.user.value);
@@ -78,22 +81,37 @@ function ShopBasketPage() {
         message: "User Not Found",
         description: "You must log in to purchase",
       });
-    } else {
+    } else if (basketList.length > 0) {
       createOrder();
     }
   };
-  const createOrder = () => {};
+  const createOrder = async () => {
+    const body = {
+      userId: user._id,
+      orderList: basketList,
+      basketListId: basket._id,
+    };
+    await apiFunction("createOrder", { body, type: "post" }).then(
+      async (res) => {
+        if (res?.statusText === "Created") {
+          await getDiscountProducts();
+          await getUserBasketList(user?._id);
+          setOrderModal(true);
+        }
+      }
+    );
+  };
   useEffect(() => {
     if (basketList?.length > 0) {
       calculateSubTotal();
     }
   }, [basketList]);
   useEffect(() => {
-    if (basket?.length >= 0) {
-      setBasketList(basket);
+    if (basket?.basketList?.length >= 0) {
+      setBasketList(basket?.basketList);
       setLoading(false);
     }
-  }, [basket]);
+  }, [basket?.basketList]);
   useEffect(() => {
     if (basketLocalStorage.length > 0) {
       setBasketList(basketLocalStorage);
@@ -190,6 +208,14 @@ function ShopBasketPage() {
           <img src="/images/products/emptyProduct.svg" alt="EmptyProduct" />
         </div>
       )}
+      <Modal
+        title="Order Created"
+        open={orderModal}
+        onOk={() => setOrderModal(false)}
+        onCancel={() => setOrderModal(false)}
+      >
+        <OrderModalContent user={user} />
+      </Modal>
     </Spin>
   );
 }
